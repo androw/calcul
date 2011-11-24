@@ -1,9 +1,8 @@
-
 #include "Menu.h"
 #include "ExerciceSerie.h"
-#include "table.h"
-#include "deduction.h"
-#include "grad.h"
+#include "Table.h"
+#include "Deduction.h"
+#include "Grad.h"
 
 
 Menu::Menu()
