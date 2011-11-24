@@ -16,29 +16,17 @@
 //      along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Menu.h"
-#include "ExerciceSerie.h"
-#include "Table.h"
-#include "Deduction.h"
-#include "Grad.h"
-
 
 Menu::Menu()
 {
-
     setFixedSize(800, 600);
-
-
-
 
     //FOND ECRAN
     QLabel *image = new QLabel(this);
     image->setPixmap(QPixmap("22.jpg"));
     image->setGeometry(0, 0, 800, 600);
 
-
-
     //BOUTON VALIDATION
-
     serie = new QPushButton("Exercice \n Serie", this);
     tablem = new QPushButton("Exercice \n Table de \n Multiplication", this);
     grad = new QPushButton("Exercice \n Graduation \n de Droite", this);
@@ -64,62 +52,45 @@ Menu::Menu()
     equation->setGeometry(320, 350, 100, 100);
     devFac->setGeometry(530, 350, 100, 100);
 
-
-   // m_bouton->setToolTip("vérifier bien votre résultat");
-
+	// m_bouton->setToolTip("vérifier bien votre résultat");
 
     QObject::connect(serie, SIGNAL(clicked()), this, SLOT(aserie()));
     QObject::connect(tablem, SIGNAL(clicked()), this, SLOT(atable()));
     QObject::connect(dedu, SIGNAL(clicked()), this, SLOT(adedu()));
     QObject::connect(grad, SIGNAL(clicked()), this, SLOT(agrad()));
 
-     //CONSIGNE
-     QLabel *label1 = new QLabel("Choisissez l'exercice que vous voulez", this);
-     label1->setFont(QFont("PenclPete FONT", 18));
-     label1->setStyleSheet("color:White;");
-     label1->setGeometry(40, 23, 450, 50);
-     label1->setStyleSheet("border-width: 2px;\
+	//CONSIGNE
+	QLabel *label1 = new QLabel("Choisissez l'exercice que vous voulez", this);
+	label1->setFont(QFont("PenclPete FONT", 18));
+	label1->setStyleSheet("color:White;");
+	label1->setGeometry(40, 23, 450, 50);
+	label1->setStyleSheet("border-width: 2px;\
                            border-radius: 10px;\
                             background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
                                stop: 0 #9932CC, stop: 1 #BA55D3);");
-
-
 }
 
 
 void Menu::aserie() {
-
     ExerciceSerie *fenetre = new ExerciceSerie(this);
     hide();
     fenetre->show();
-
 }
 
 void Menu::atable() {
-
     Table *fenetre = new Table(this);
     hide();
     fenetre->show();
-
 }
 
 void Menu::adedu() {
-
     Deduction *fenetre = new Deduction(this);
     hide();
     fenetre->show();
-
 }
 
 void Menu::agrad() {
-
     ExerciceGraduation *fenetre = new ExerciceGraduation(this);
     hide();
     fenetre->show();
-
 }
-
-
-
-
-
