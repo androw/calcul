@@ -1,4 +1,4 @@
-#include "deduction.h"
+#include "Deduction.h"
 
 Deduction::Deduction(QMainWindow *p)
 {

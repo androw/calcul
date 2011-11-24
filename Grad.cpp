@@ -1,4 +1,4 @@
-#include "grad.h"
+#include "Grad.h"
 
 ExerciceGraduation::ExerciceGraduation(QMainWindow *p)
 {
