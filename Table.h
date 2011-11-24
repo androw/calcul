@@ -18,7 +18,6 @@
 #ifndef TABLE_H
 #define TABLE_H
 
-
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
@@ -33,7 +32,6 @@
 #include <QGridLayout>
 
 #include"Exercice.h"
-
 
 class Table : public Exercice {
     Q_OBJECT
@@ -54,24 +52,19 @@ class Table : public Exercice {
         QLabel *comment;
         QMainWindow *parent;
 
-
-
-
-public slots:
-       void message();
+		public slots:
+		void message();
         void chrono();
 
         public slots:
         void menu();
 
-
         public :
         Table(QMainWindow *p);
         ~Table();
-         bool verif();
-         void evaluation(float nombre);
+		bool verif();
+		void evaluation(float nombre);
 
 
 };
-
 #endif // TABLE_H
