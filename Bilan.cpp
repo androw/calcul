@@ -16,45 +16,40 @@
 //      along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Bilan.h"
-#include<iostream>
-#include<cstdio>
-#include<cstdlib>
-#include<sys/time.h>
 
 using namespace std;
 clock_t clock(void);
 
 Bilan::Bilan() {
-        erreur = 0;
-        temps = 0;
-        note = 0;
+	erreur = 0;
+	temps = 0;
+	note = 0;
 }
 
-
-
 void Bilan::setErreur(int er) {
-        erreur = er;
+	erreur = er;
 }
 
 int Bilan::getErreur() {
-        return erreur;
+	return erreur;
 }
 
 void Bilan::setTime(double t) {
-        temps = t;
+	temps = t;
 }
 
 double Bilan::getTime() {
-        return temps;
+	return temps;
 }
 
 void Bilan::setNote(float n) {
-        note = n;
+	note = n;
 }
 
 float Bilan::getNote() {
-        return note;
+	return note;
 }
+
 /*
 void Bilan::exercice(int nombre) {
         struct timeval tv1,tv2; //declaration des heures a venir
@@ -147,5 +142,3 @@ void Bilan::evaluation(int nombre) {
 }
 
 */
-
-

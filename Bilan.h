@@ -17,20 +17,20 @@
 
 #ifndef BILAN_H
 #define BILAN_H
-#include<ctime>
 
+#include <ctime>
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <sys/time.h>
 
 class Bilan{
-
         protected :
-
-
         double temps;
         int erreur;
         float note;
 
         public :
-
         Bilan();
         void setErreur(int er);
         int getErreur();
@@ -41,7 +41,4 @@ class Bilan{
         /*void exercice(int nombre);
         void evaluation(int nombre);*/
 };
-
-
-
 #endif // BILAN_H
