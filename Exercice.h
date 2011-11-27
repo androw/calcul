@@ -35,7 +35,7 @@
 #include<iostream>
 #include "Bilan.h"
 using namespace std;
-float abs(float a);
+//float abs(float a);
 
 class Exercice : public QDialog
 {
@@ -46,7 +46,7 @@ Q_OBJECT
 
     public:
     Exercice();
-   virtual void evaluation(float nombre) = 0;
+    virtual void evaluation(float nombre) = 0;
 };
 
 #endif // EXERCICE_H
