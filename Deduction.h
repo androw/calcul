@@ -18,7 +18,6 @@
 #ifndef DEDUCTION_H
 #define DEDUCTION_H
 
-
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
@@ -32,14 +31,13 @@
 #include <QColor>
 #include <QGridLayout>
 
-#include"Exercice.h"
-
+#include "Exercice.h"
 
 class Deduction : public Exercice {
     Q_OBJECT
 
-        protected:
-        QPushButton *m_bouton;
+	protected:
+		QPushButton *m_bouton;
         QPushButton *m_menu;
         QLineEdit * reponse[30];
         float taVariable;
@@ -54,25 +52,17 @@ class Deduction : public Exercice {
         QLabel *comment;
         QMainWindow *parent;
 
-
-
-
-public slots:
-       void message();
+	public slots:
+		void message();
         void chrono();
 
-        public slots:
+    public slots:
         void menu();
 
-
-        public :
+    public :
         Deduction(QMainWindow *p);
         ~Deduction();
-         bool verif();
-         void evaluation(float nombre);
-
-
+        bool verif();
+        void evaluation(float nombre);
 };
-
-
 #endif // DEDUCTION_H
