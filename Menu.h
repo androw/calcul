@@ -57,6 +57,6 @@ class Menu : public QMainWindow {
         signals:
 
         public :
-            Menu();
+        Menu();
 };
 #endif // MENU_H
