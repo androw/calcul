@@ -35,16 +35,14 @@
 #include<iostream>
 #include "Bilan.h"
 using namespace std;
+float abs(float a);
 
 class Exercice : public QDialog
 {
 Q_OBJECT
 
     protected:
-
-   Bilan bilan;
-
-
+    Bilan bilan;
 
     public:
     Exercice();
