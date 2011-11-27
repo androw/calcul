@@ -22,37 +22,23 @@ Deduction::Deduction(QMainWindow *p)
     parent = p;
     setFixedSize(800, 600);
 
-
-
     //FOND ECRAN
     QLabel *image = new QLabel(this);
     image->setPixmap(QPixmap("23.jpg"));
     image->setGeometry(0, 0, 800, 600);
 
-
-
-
-
-
-
-
-       SECONDES = 00;
-       MINUTES = 00;
-       erreur = 0;
-       currenterr = 0;
-        timerA = new QTimer();
-      label = new QLabel(QString::number(MINUTES)+" : 0"+ QString::number(SECONDES),this );
-      timerA->start(1000); // Attention pas 100 = 0,1 seconde
-      connect(timerA, SIGNAL(timeout()), this, SLOT(chrono()));
-      //statusBar()->addWidget(label,1);
-      label->setFont(QFont("PencilPet", 14));
-      label->setStyleSheet("color:White;");
-      label->setGeometry(500+200,30, 640, 50);
-
-
-
-
-
+    SECONDES = 00;
+    MINUTES = 00;
+    erreur = 0;
+    currenterr = 0;
+    timerA = new QTimer();
+    label = new QLabel(QString::number(MINUTES)+" : 0"+ QString::number(SECONDES),this );
+    timerA->start(1000); // Attention pas 100 = 0,1 seconde
+    connect(timerA, SIGNAL(timeout()), this, SLOT(chrono()));
+    //statusBar()->addWidget(label,1);
+    label->setFont(QFont("PencilPet", 14));
+    label->setStyleSheet("color:White;");
+    label->setGeometry(500+200,30, 640, 50);
 
     srand(time(NULL));
     taVariable = rand()%10+1;
@@ -226,58 +212,44 @@ void Deduction::message(){
 
 
 void Deduction::evaluation(float nombre) {
-
-        if (erreur < 10) {
+	if (erreur < 10) {
                 comment->setText("WOUAOUHH !!! ");
-        }
-        else if (erreur < 15) {
+	} else if (erreur < 15) {
                 comment->setText( "Pas mal ! ");
-        }
-        else if (erreur < 25) {
+	} else if (erreur < 25) {
                 comment->setText("Mouais ..");
-        }
-        else {
+	} else {
                 comment->setText( "LOOSER");
         }
         if (MINUTES < 2) {
                 comment->setText( "Rapide comme l'éclair !");
-        }
-        else if (MINUTES < 3) {
+        } else if (MINUTES < 3) {
                 comment->setText("Pas trop lent");
-        }
-        else {
+        } else {
                 comment->setText( "Escargal !!");
         }
 }
 
 void Deduction::chrono(){
-
-    if(SECONDES<10) {
+	if(SECONDES<10) {
         label->setText(QString::number(MINUTES)+" : 0"+ QString::number(SECONDES) );
     }else {
         label->setText( QString::number(MINUTES)+" : "+ QString::number(SECONDES) );
     }
-  if (SECONDES == 59) {
-  SECONDES=00;
-  MINUTES++;
-  }else {
-      SECONDES++;
-  }
-
-
-
-
+	if (SECONDES == 59) {
+		SECONDES = 00;
+		MINUTES++;
+	}else {
+		SECONDES++;
+	}
 }
 
 void Deduction::menu() {
     close();
     parent->show();
-
-
 }
 
 Deduction::~Deduction() {
-
     delete[] reponse;
 }
 
