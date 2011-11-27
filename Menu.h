@@ -35,6 +35,7 @@
 #include "Table.h"
 #include "Deduction.h"
 #include "Grad.h"
+#include "Equation.h"
 
 class Menu : public QMainWindow {
     Q_OBJECT
@@ -52,7 +53,7 @@ class Menu : public QMainWindow {
         void atable();
         void adedu();
         void agrad();
-
+        void aequation();
         signals:
 
         public :

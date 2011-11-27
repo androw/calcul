@@ -58,6 +58,7 @@ Menu::Menu()
     QObject::connect(tablem, SIGNAL(clicked()), this, SLOT(atable()));
     QObject::connect(dedu, SIGNAL(clicked()), this, SLOT(adedu()));
     QObject::connect(grad, SIGNAL(clicked()), this, SLOT(agrad()));
+    QObject::connect(equation, SIGNAL(clicked()), this, SLOT(aequation()));
 
 	//CONSIGNE
 	QLabel *label1 = new QLabel("Choisissez l'exercice que vous voulez", this);
@@ -91,6 +92,12 @@ void Menu::adedu() {
 
 void Menu::agrad() {
     ExerciceGraduation *fenetre = new ExerciceGraduation(this);
+    hide();
+    fenetre->show();
+}
+
+void Menu::aequation() {
+    Equation *fenetre = new Equation(this);
     hide();
     fenetre->show();
 }
