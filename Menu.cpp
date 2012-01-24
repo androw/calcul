@@ -17,6 +17,7 @@
 
 #include "Menu.h"
 
+
 Menu::Menu()
 {
     setFixedSize(800, 600);
@@ -51,6 +52,12 @@ Menu::Menu()
     dedu->setGeometry(110, 350, 100, 100);
     equation->setGeometry(320, 350, 100, 100);
     devFac->setGeometry(530, 350, 100, 100);
+    lancerTest = new QPushButton("Lancer l'évaluation", this);
+    lancerTest->setGeometry(320, 500, 100, 40);
+    lancerTest->setFont(QFont("encilPete FONT", 20));
+    lancerTest->setCursor(Qt::PointingHandCursor);
+    lancerTest->setStyleSheet(" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
+                           stop: 0 #FF0000, stop: 1 #F5F5F5);");
 
 	// m_bouton->setToolTip("vérifier bien votre résultat");
 
@@ -66,38 +73,67 @@ Menu::Menu()
 	label1->setStyleSheet("color:White;");
 	label1->setGeometry(40, 23, 450, 50);
 	label1->setStyleSheet("border-width: 2px;\
-                           border-radius: 10px;\
+                              border-style: outset;\
+                              border-width: 2px;\
+                              border-radius: 10px;\
+                              border-color: black;\
                             background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                               stop: 0 #9932CC, stop: 1 #BA55D3);");
+                               stop: 0 #FFFFFF, stop: 1 #BA55D3);");
+
+     /*   QComboBox * Liste = new QComboBox(this);
+        Liste->addItem("Entraînement");
+        Liste->addItem("Evaluation");
+        Liste->addItem("Compétition");
+        Liste->setGeometry(40, 90, 100, 25);
+        Liste->setCursor(Qt::PointingHandCursor); */
+
+        QGroupBox *groupbox = new QGroupBox("Difficulté", this);
+
+        QRadioButton *Facile = new QRadioButton("Facile");
+        QRadioButton *Normal = new QRadioButton("Normal");
+        QRadioButton *Difficile = new QRadioButton("Difficile");
+        QRadioButton *TresDifficile = new QRadioButton("Trés Difficile");
+
+        QVBoxLayout *vbox = new QVBoxLayout;
+            vbox->addWidget(Facile);
+            vbox->addWidget(Normal);
+            vbox->addWidget(Difficile);
+            vbox->addWidget(TresDifficile);
+
+            groupbox->setLayout(vbox);
+            groupbox->setGeometry(600, 490, 50, 100);
+
+            Facile->setChecked(true);
+
 }
 
 
 void Menu::aserie() {
     ExerciceSerie *fenetre = new ExerciceSerie(this);
-    hide();
-    fenetre->show();
+    //hide();
+    fenetre->exec();
 }
 
 void Menu::atable() {
     Table *fenetre = new Table(this);
-    hide();
-    fenetre->show();
+    //hide();
+    fenetre->exec();
 }
 
 void Menu::adedu() {
     Deduction *fenetre = new Deduction(this);
-    hide();
-    fenetre->show();
+    //hide();
+    fenetre->exec();
 }
 
 void Menu::agrad() {
     ExerciceGraduation *fenetre = new ExerciceGraduation(this);
-    hide();
-    fenetre->show();
+    //hide();
+    fenetre->exec();
 }
 
 void Menu::aequation() {
     Equation *fenetre = new Equation(this);
-    hide();
-    fenetre->show();
+    //hide();
+    fenetre->exec();
 }

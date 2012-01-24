@@ -18,6 +18,7 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <Qt>
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
@@ -30,6 +31,8 @@
 #include <QLineEdit>
 #include <QColor>
 #include <QGridLayout>
+#include <QLCDNumber>
+
 
 #include "ExerciceSerie.h"
 #include "Table.h"
@@ -47,6 +50,7 @@ class Menu : public QMainWindow {
         QPushButton *dedu;
         QPushButton *equation;
         QPushButton *devFac;
+        QPushButton *lancerTest;
 
         public slots:
         void aserie();

@@ -120,7 +120,7 @@ Table::Table(QMainWindow *p)
 	QLabel *label1 = new QLabel("Remplissez les Cases avec le bon résultat", this);
 	label1->setFont(QFont("PenclPete FONT", 18));
 	label1->setStyleSheet("color:White;");
-	label1->setGeometry(40, 23, 450, 50);
+        label1->setGeometry(40, 23, 500, 50);
 	label1->setStyleSheet("border-width: 2px;\
                            border-radius: 10px;\
                            background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\

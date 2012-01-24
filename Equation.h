@@ -53,7 +53,7 @@ class Equation : public Exercice {
         QLabel *comment;
         QMainWindow *parent;
 
-		public slots:
+                public slots:
         void message();
         void chrono();
 
