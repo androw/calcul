@@ -6,7 +6,10 @@ SOURCES += \
     ExerciceSerie.cpp \
     Deduction.cpp \
     Grad.cpp \
-    Table.cpp
+    Table.cpp \
+    Equation.cpp \
+    Monome.cpp \
+    Boite.cpp
 
 HEADERS += \
     Exercice.h \
@@ -15,9 +18,18 @@ HEADERS += \
     Menu.h \
     Table.h \
     Grad.h \
-    Deduction.h
+    Deduction.h \
+    Equation.h \
+    Monome.h \
+    Boite.h
 
 OTHER_FILES +=
+
+
+
+
+
+
 
 
 

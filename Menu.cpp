@@ -28,30 +28,60 @@ Menu::Menu()
     image->setGeometry(0, 0, 800, 600);
 
     //BOUTON VALIDATION
+    boite1 = new QPushButton("Exercice \n Boite x4", this);
+    boite2 = new QPushButton("Exercice \n Boite x20", this);
+    boite3 = new QPushButton("Exercice \n Boite x5", this);
     serie = new QPushButton("Exercice \n Serie", this);
     tablem = new QPushButton("Exercice \n Table de \n Multiplication", this);
     grad = new QPushButton("Exercice \n Graduation \n de Droite", this);
     dedu = new QPushButton("Exercice \n de Deduction", this);
     equation = new QPushButton("Exercice \n Equation", this);
-    devFac = new QPushButton("Exercice \n developpement \n et \n Factorisation", this);
+
+    boite1->setFont(QFont("encilPete FONT", 20));
+    boite2->setFont(QFont("encilPete FONT", 20));
+    boite3->setFont(QFont("encilPete FONT", 20));
     serie->setFont(QFont("encilPete FONT", 20));
     tablem->setFont(QFont("encilPete FONT", 20));
     grad->setFont(QFont("encilPete FONT", 20));
     dedu->setFont(QFont("encilPete FONT", 20));
     equation->setFont(QFont("encilPete FONT", 20));
-    devFac->setFont(QFont("encilPete FONT", 20));
+
+    boite1->setCursor(Qt::PointingHandCursor);
+    boite2->setCursor(Qt::PointingHandCursor);
+    boite3->setCursor(Qt::PointingHandCursor);
     serie->setCursor(Qt::PointingHandCursor);
     tablem->setCursor(Qt::PointingHandCursor);
     grad->setCursor(Qt::PointingHandCursor);
     dedu->setCursor(Qt::PointingHandCursor);
     equation->setCursor(Qt::PointingHandCursor);
-    devFac->setCursor(Qt::PointingHandCursor);
-    serie->setGeometry(110, 200, 100, 100);
-    tablem->setGeometry(320, 200, 100, 100);
-    grad->setGeometry(530, 200, 100, 100);
-    dedu->setGeometry(110, 350, 100, 100);
-    equation->setGeometry(320, 350, 100, 100);
-    devFac->setGeometry(530, 350, 100, 100);
+
+    equation->setGeometry(0, 0, 0, 0);
+    serie->setGeometry(0, 0, 0, 0);
+    tablem->setGeometry(0, 0, 0, 0);
+    grad->setGeometry(0, 0, 0, 0);
+    dedu->setGeometry(0, 0, 0, 0);
+
+    QPropertyAnimation *animation1 = new QPropertyAnimation (boite1, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(0, 0, 100, 100));
+    animation1->setEndValue(QRect(110, 200, 100, 100));
+    animation1->setEasingCurve(QEasingCurve::OutBack);
+    animation1->start();
+
+    QPropertyAnimation *animation2 = new QPropertyAnimation (boite2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(320, 200, 100, 100));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
+    QPropertyAnimation *animation3 = new QPropertyAnimation (boite3, "geometry");
+    animation3->setDuration(500);
+    animation3->setStartValue(QRect(0, 0, 100, 30));
+    animation3->setEndValue(QRect(530, 200, 100, 100));
+    animation3->setEasingCurve(QEasingCurve::OutBack);
+    animation3->start();
+
     lancerTest = new QPushButton("Lancer l'évaluation", this);
     lancerTest->setGeometry(320, 500, 100, 40);
     lancerTest->setFont(QFont("encilPete FONT", 20));
@@ -59,13 +89,38 @@ Menu::Menu()
     lancerTest->setStyleSheet(" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
                            stop: 0 #FF0000, stop: 1 #F5F5F5);");
 
-	// m_bouton->setToolTip("vérifier bien votre résultat");
 
+    QGroupBox *groupbox = new QGroupBox("Catégories", this);
+
+    QRadioButton *Facile = new QRadioButton("Décomposition calcul");
+    QRadioButton *Normal = new QRadioButton("Normal");
+    QRadioButton *Difficile = new QRadioButton("Difficile");
+    QRadioButton *TresDifficile = new QRadioButton("Trés Difficile");
+
+    QVBoxLayout *vbox = new QVBoxLayout;
+        vbox->addWidget(Facile);
+        vbox->addWidget(Normal);
+        vbox->addWidget(Difficile);
+        vbox->addWidget(TresDifficile);
+
+        groupbox->setLayout(vbox);
+        groupbox->setGeometry(600, 490, 50, 100);
+
+        Facile->setChecked(true);
+
+	// m_bouton->setToolTip("vérifier bien votre résultat");
+    QObject::connect(boite1, SIGNAL(clicked()), this, SLOT(aboite1()));
+    QObject::connect(boite2, SIGNAL(clicked()), this, SLOT(aboite2()));
+    QObject::connect(boite3, SIGNAL(clicked()), this, SLOT(aboite3()));
     QObject::connect(serie, SIGNAL(clicked()), this, SLOT(aserie()));
     QObject::connect(tablem, SIGNAL(clicked()), this, SLOT(atable()));
     QObject::connect(dedu, SIGNAL(clicked()), this, SLOT(adedu()));
     QObject::connect(grad, SIGNAL(clicked()), this, SLOT(agrad()));
     QObject::connect(equation, SIGNAL(clicked()), this, SLOT(aequation()));
+    QObject::connect(Facile, SIGNAL(clicked()), this, SLOT(facil()));
+    QObject::connect(Normal, SIGNAL(clicked()), this, SLOT(normal()));
+    QObject::connect(Difficile, SIGNAL(clicked()), this, SLOT(difficil()));
+    QObject::connect(TresDifficile, SIGNAL(clicked()), this, SLOT(Tdifficil()));
 
 	//CONSIGNE
 	QLabel *label1 = new QLabel("Choisissez l'exercice que vous voulez", this);
@@ -87,29 +142,130 @@ Menu::Menu()
         Liste->setGeometry(40, 90, 100, 25);
         Liste->setCursor(Qt::PointingHandCursor); */
 
-        QGroupBox *groupbox = new QGroupBox("Difficulté", this);
 
-        QRadioButton *Facile = new QRadioButton("Facile");
-        QRadioButton *Normal = new QRadioButton("Normal");
-        QRadioButton *Difficile = new QRadioButton("Difficile");
-        QRadioButton *TresDifficile = new QRadioButton("Trés Difficile");
 
-        QVBoxLayout *vbox = new QVBoxLayout;
-            vbox->addWidget(Facile);
-            vbox->addWidget(Normal);
-            vbox->addWidget(Difficile);
-            vbox->addWidget(TresDifficile);
 
-            groupbox->setLayout(vbox);
-            groupbox->setGeometry(600, 490, 50, 100);
+}
 
-            Facile->setChecked(true);
+
+void Menu::facil() {
+    equation->setGeometry(0, 0, 0, 0);
+    serie->setGeometry(0, 0, 0, 0);
+    tablem->setGeometry(0, 0, 0, 0);
+    grad->setGeometry(0, 0, 0, 0);
+    dedu->setGeometry(0, 0, 0, 0);
+
+    QPropertyAnimation *animation1 = new QPropertyAnimation (boite1, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(0, 0, 100, 100));
+    animation1->setEndValue(QRect(110, 200, 100, 100));
+    animation1->setEasingCurve(QEasingCurve::OutBack);
+    animation1->start();
+
+    QPropertyAnimation *animation2 = new QPropertyAnimation (boite2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(320, 200, 100, 100));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
+    QPropertyAnimation *animation3 = new QPropertyAnimation (boite3, "geometry");
+    animation3->setDuration(500);
+    animation3->setStartValue(QRect(0, 0, 100, 30));
+    animation3->setEndValue(QRect(530, 200, 100, 100));
+    animation3->setEasingCurve(QEasingCurve::OutBack);
+    animation3->start();
+}
+
+void Menu::normal() {
+
+
+    boite1->setGeometry(0, 0, 0, 0);
+    boite2->setGeometry(0, 0, 0, 0);
+    boite3->setGeometry(0, 0, 0, 0);
+    grad->setGeometry(0, 0, 0, 0);
+    dedu->setGeometry(0, 0, 0, 0);
+
+    QPropertyAnimation *animation1 = new QPropertyAnimation (equation, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(0, 0, 100, 100));
+    animation1->setEndValue(QRect(110, 200, 100, 100));
+    animation1->setEasingCurve(QEasingCurve::OutBack);
+    animation1->start();
+
+    QPropertyAnimation *animation2 = new QPropertyAnimation (serie, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(320, 200, 100, 100));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
+    QPropertyAnimation *animation3 = new QPropertyAnimation (tablem, "geometry");
+    animation3->setDuration(500);
+    animation3->setStartValue(QRect(0, 0, 100, 30));
+    animation3->setEndValue(QRect(530, 200, 100, 100));
+    animation3->setEasingCurve(QEasingCurve::OutBack);
+    animation3->start();
+}
+void Menu::difficil() {
+    equation->setGeometry(0, 0, 0, 0);
+    boite1->setGeometry(0, 0, 0, 0);
+    boite2->setGeometry(0, 0, 0, 0);
+    boite3->setGeometry(0, 0, 0, 0);
+    serie->setGeometry(0, 0, 0, 0);
+    tablem->setGeometry(0, 0, 0, 0);
+    grad->setGeometry(110, 200, 100, 100);
+    dedu->setGeometry(320, 200, 100, 100);
+
+    QPropertyAnimation *animation1 = new QPropertyAnimation (grad, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(0, 0, 100, 100));
+    animation1->setEndValue(QRect(110, 200, 100, 100));
+    animation1->setEasingCurve(QEasingCurve:: OutBack);
+    animation1->start();
+
+    QPropertyAnimation *animation2 = new QPropertyAnimation (dedu, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(320, 200, 100, 100));
+    animation2->setEasingCurve(QEasingCurve:: OutBack);
+    animation2->start();
+
+}
+void Menu::Tdifficil() {
+    equation->setGeometry(0, 0, 0, 0);
+    boite1->setGeometry(0, 0, 0, 0);
+    boite2->setGeometry(0, 0, 0, 0);
+    boite3->setGeometry(0, 0, 0, 0);
+    serie->setGeometry(0, 0, 0, 0);
+    tablem->setGeometry(0, 0, 0, 0);
+    grad->setGeometry(0, 0, 0, 0);
+    dedu->setGeometry(0, 0, 0, 0);
+
 
 }
 
 
 void Menu::aserie() {
     ExerciceSerie *fenetre = new ExerciceSerie(this);
+    //hide();
+    fenetre->exec();
+}
+
+void Menu::aboite1() {
+    Boite *fenetre = new Boite(this,2,4);
+    //hide();
+    fenetre->exec();
+}
+
+void Menu::aboite2() {
+    Boite *fenetre = new Boite(this,10,20);
+    //hide();
+    fenetre->exec();
+}
+
+void Menu::aboite3() {
+    Boite *fenetre = new Boite(this,10,5);
     //hide();
     fenetre->exec();
 }
