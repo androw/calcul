@@ -121,10 +121,13 @@ Table::Table(QMainWindow *p)
 	label1->setFont(QFont("PenclPete FONT", 18));
 	label1->setStyleSheet("color:White;");
         label1->setGeometry(40, 23, 500, 50);
-	label1->setStyleSheet("border-width: 2px;\
-                           border-radius: 10px;\
-                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                           stop: 0 #9932CC, stop: 1 #BA55D3);");
+        label1->setStyleSheet("border-width: 2px;\
+                              border-style: outset;\
+                              border-width: 2px;\
+                              border-radius: 10px;\
+                              border-color: black;\
+                              background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
+                              stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 }
 
 bool Table::verif() {

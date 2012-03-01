@@ -35,15 +35,11 @@ int main(int argc, char *argv[])
 						padding: 6px;\
 					}\
                                         QComboBox {\
-                                                background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                                        stop: 0 #FFFFFF, stop: 1 #BA55D3);\
                                                 border-style: outset;\
                                                 border-width: 1px;\
-                                                border-radius: 5px;\
+                                                border-radius: 10px;\
                                                 border-color: black;\
                                                 font:13px;\
-                                                min-width: 10em;\
-                                                padding: 6px;\
                                         }\
                                         QGroupBox {\
                                                 font:bold 13px;\
@@ -57,11 +53,7 @@ int main(int argc, char *argv[])
                                             subcontrol-position: top center; /* position at the top center */\
                                         }\
                                         QComboBox::drop-down {\
-                                                background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                                        stop: 0 #FFFFFF, stop: 1 #BA55D3);\
-                                                border-style: outset;\
-                                                max-width: 0em;\
-                                                border-radius: 10px;\
+                                            border-radius: 10px;\
                                         }\
 					QPushButton:hover {\
 						background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\

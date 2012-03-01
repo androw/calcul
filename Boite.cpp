@@ -94,9 +94,22 @@ Boite::Boite(QMainWindow *p,int e1,int e2)
     }
 
     for(int i=0;i<5;i++){
-        calcul[i+10] = new  QLabel("x" + QString::number(etude2/etude1),this);
-        calcul[i+10]->setGeometry(390+84, 50*i+34+30*i+80,90,40);
-        calcul[i+10]->setFont(QFont("PncilPete FONT", 14));
+        if(etude2/etude1 == 0.5) {
+            calcul[i+10] = new  QLabel(": 2",this);
+	}
+	else if(etude2 == 3) {
+            calcul[i+10] = new  QLabel("+ " + QString::number(taVariable[i]),this);
+	}
+	else if(etude2 == 9) {
+            calcul[i+10] = new  QLabel("- " + QString::number(taVariable[i]),this);
+	}
+        else {
+            calcul[i+10] = new  QLabel("x" + QString::number(etude2/etude1),this);
+        }
+
+            calcul[i+10]->setGeometry(390+84, 50*i+34+30*i+80,90,40);
+            calcul[i+10]->setFont(QFont("PncilPete FONT", 14));
+
     }
 
     for(int i=0;i<5;i++){
@@ -110,14 +123,17 @@ Boite::Boite(QMainWindow *p,int e1,int e2)
 
 
      //CONSIGNE
-     QLabel *label1 = new QLabel("Remplissez les Cases avec le bon résultat", this);
+     QLabel *label1 = new QLabel("Remplissez les Cases avec le bon rŽsultat", this);
      label1->setFont(QFont("PenclPete FONT", 18));
      label1->setStyleSheet("color:White;");
      label1->setGeometry(40, 23, 500, 50);
      label1->setStyleSheet("border-width: 2px;\
+                           border-style: outset;\
+                           border-width: 2px;\
                            border-radius: 10px;\
-                            background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                               stop: 0 #9932CC, stop: 1 #BA55D3);");
+                           border-color: black;\
+                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
+                           stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 
 
 }
