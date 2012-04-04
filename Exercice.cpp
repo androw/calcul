@@ -27,3 +27,15 @@ Exercice::Exercice() {}
 //        return -a;
 //    }
 //}
+
+void Exercice::verifDec(double a, double b){
+    double ent = floor(b);
+    double dec = b - ent;
+    dec = dec*10;
+    while ((dec-floor(dec) > 0.001) || (dec-floor(dec) < -0.001)){
+       if (((ent+dec) - a < 0.001) && ((ent+dec) - a > -0.001)){
+            QMessageBox::critical(this, "Attention", "Il semblerait que tu différencies la partie entière de la partie décimale");
+        }
+        dec = dec*10;
+    }
+}

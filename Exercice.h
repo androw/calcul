@@ -43,10 +43,12 @@ Q_OBJECT
 
     protected:
     Bilan bilan;
+    QProgressBar *progress;
 
     public:
     Exercice();
     virtual void evaluation(float nombre) = 0;
+    void verifDec(double a, double b);
 };
 
 #endif // EXERCICE_H

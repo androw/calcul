@@ -18,6 +18,7 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <Qt>
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
@@ -30,30 +31,54 @@
 #include <QLineEdit>
 #include <QColor>
 #include <QGridLayout>
+#include <QLCDNumber>
+
 
 #include "ExerciceSerie.h"
+#include "Boite.h"
 #include "Table.h"
 #include "Deduction.h"
 #include "Grad.h"
 #include "Equation.h"
+#include "Tableau.h"
 
 class Menu : public QMainWindow {
     Q_OBJECT
 
         protected:
+        QPushButton *boite1;
+        QPushButton *boite2;
+        QPushButton *boite3;
+        QPushButton *boite4;
+        QPushButton *boite5;
         QPushButton *serie;
         QPushButton *tablem;
         QPushButton *grad;
         QPushButton *dedu;
         QPushButton *equation;
         QPushButton *devFac;
+        QPushButton *tableau;
+        QPropertyAnimation *animation1;
+        QPropertyAnimation *animation2;
+        QLineEdit *prenom;
+        QLineEdit *nom;
+        QComboBox *classe;
 
         public slots:
+        void facil();
+        void normal();
+        void difficil();
+        void aboite1();
+        void aboite2();
+        void aboite3();
+        void aboite4();
+        void aboite5();
         void aserie();
         void atable();
         void adedu();
         void agrad();
         void aequation();
+        void atableau();
         signals:
 
         public :

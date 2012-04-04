@@ -41,7 +41,9 @@ Equation::Equation(QMainWindow *p)
       label->setGeometry(500+200,30, 640, 50);
 
 
-
+      progress = new QProgressBar(this);
+      progress->setValue(erreur*10);
+      progress->setGeometry(280+60, 415+110,200,30);
 
 
 
@@ -58,7 +60,7 @@ Equation::Equation(QMainWindow *p)
     //BOUTON VALIDATION
 
     m_bouton = new QPushButton("Valider", this);
-    m_bouton->setToolTip("vérifier bien votre résultat");
+    m_bouton->setToolTip("vÃ©rifier bien votre rÃ©sultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(180+60, 450+110);
@@ -76,17 +78,18 @@ Equation::Equation(QMainWindow *p)
 
     for(int i=0;i<10;i++){
         numerateur[i] = new QLineEdit("",this);
-        numerateur[i]->setGeometry(500, 10*i+20+40+30*i+80,50,20);
+        numerateur[i]->setGeometry(520, 10*i+20+40+30*i+80,50,20);
 
     }
     for(int i=0;i<10;i++){
         denominateur[i] = new QLineEdit("",this);
-        denominateur[i]->setGeometry(570, 10*i+20+40+30*i+80,50,20);
+        denominateur[i]->setGeometry(590, 10*i+20+40+30*i+80,50,20);
 
     }
 
 
     QLabel * calcul[10];
+     QLabel * traitfraction[10];
 
 
 
@@ -94,21 +97,37 @@ Equation::Equation(QMainWindow *p)
 
     for(int i=0;i<10;i++){
         calcul[i] = new  QLabel(QString::number(m[i].getCoefficient()) +" x + "+ QString::number(m[i].getConstante()) +" = "+ QString::number(m[i].getResultat())+"  ",this);
-        calcul[i]->setGeometry(300, 10*i+15+40+30*i+80,110,40);
+        calcul[i]->setGeometry(300, 10*i+15+40+30*i+80,140,40);
         calcul[i]->setFont(QFont("PncilPete FONT", 14));
+    }
+
+    for(int i=0;i<10;i++){
+        traitfraction[i] = new  QLabel("/",this);
+        traitfraction[i]->setGeometry(575,10*i+20+30+30*i+80,15,40);
+        traitfraction[i]->setFont(QFont("PncilPete FONT", 14));
+    }
+
+    for(int i=0;i<10;i++){
+        traitfraction[i] = new  QLabel("x =",this);
+        traitfraction[i]->setGeometry(470,10*i+20+30+30*i+80,30,40);
+        traitfraction[i]->setFont(QFont("PncilPete FONT", 14));
     }
 
 
 
+
      //CONSIGNE
-     QLabel *label1 = new QLabel("Remplissez les Cases avec le bon résultat", this);
+     QLabel *label1 = new QLabel("Remplissez les Cases avec le bon resultat", this);
      label1->setFont(QFont("PenclPete FONT", 18));
      label1->setStyleSheet("color:White;");
-     label1->setGeometry(40, 23, 450, 50);
+     label1->setGeometry(40, 23, 500, 50);
      label1->setStyleSheet("border-width: 2px;\
+                           border-style: outset;\
+                           border-width: 2px;\
                            border-radius: 10px;\
-                            background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                               stop: 0 #9932CC, stop: 1 #BA55D3);");
+                           border-color: black;\
+                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
+                           stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 
 
 }
@@ -128,6 +147,7 @@ bool Equation::verif() {
                                       border-radius: 10px;");
             currenterr++;
             erreur++;
+            progress->setValue(erreur*20);
 
         }
         if(denominateur[i]->text().toFloat() != 0 && abs((numerateur[i]->text().toFloat() / denominateur[i]->text().toFloat() - (m[i].getResultat() - m[i].getConstante())/m[i].getCoefficient())) < 0.00001) {
@@ -156,9 +176,9 @@ void Equation::message(){
     if(verif()) {
         timerA->stop();
         if(SECONDES<10) {
-        QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+        QMessageBox::information(this, "Felicitation", "Vous avez rÃ©solue le problÃ¨me avec succÃ¨s en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }else {
-            QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Felicitation", "Vous avez rÃ©solue le problÃ¨me avec succÃ¨s en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
         QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
@@ -181,7 +201,7 @@ void Equation::evaluation(float nombre) {
                 comment->setText( "LOOSER");
         }
         if (MINUTES < 2) {
-                comment->setText( "Rapide comme l'éclair !");
+                comment->setText( "Rapide comme l'Ã©clair !");
         }
         else if (MINUTES < 3) {
                 comment->setText("Pas trop lent");

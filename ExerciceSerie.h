@@ -51,16 +51,12 @@ class ExerciceSerie : public Exercice {
         QLabel *comment;
         QMainWindow *parent;
 
-
-
-
 public slots:
        void message();
         void chrono();
 
         public slots:
         void menu();
-
 
         public :
         ExerciceSerie(QMainWindow *p);
