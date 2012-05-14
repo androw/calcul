@@ -70,13 +70,13 @@ Tableau::Tableau(QMainWindow *p)
 
     //BOUTON VALIDATION
     m_bouton = new QPushButton("Valider", this);
-    m_bouton->setToolTip("vérifier bien votre résultat");
+    m_bouton->setToolTip("Vérifier bien votre résultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(180+60, 450+110);
 
     m_next = new QPushButton("Suivant", this);
-    m_next->setToolTip("vérifier bien votre résultat");
+    m_next->setToolTip("Vérifier bien votre résultat");
     m_next->setFont(QFont("encilPete FONT", 14));
     m_next->setCursor(Qt::PointingHandCursor);
     m_next->move(340, 450+50);
@@ -244,9 +244,9 @@ void Tableau::message(){
     if(verif()) {
         timerA->stop();
         if(SECONDES<10) {
-            QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }else {
-            QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
         QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
