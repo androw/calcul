@@ -36,33 +36,33 @@
 class Deduction : public Exercice {
     Q_OBJECT
 
-	protected:
-		QPushButton *m_bouton;
-        QPushButton *m_menu;
-        QLineEdit * reponse[30];
-        float taVariable;
-        float taVariable2;
-        float taVariable3;
-        int SECONDES;
-        int MINUTES;
-        QTimer *timerA;
-        QLabel *label;
-        int erreur;
-        int currenterr;
-        QLabel *comment;
-        QMainWindow *parent;
+protected:
+    QPushButton *m_bouton;
+    QPushButton *m_menu;
+    QLineEdit * reponse[30];
+    float taVariable;
+    float taVariable2;
+    float taVariable3;
+    int SECONDES;
+    int MINUTES;
+    QTimer *timerA;
+    QLabel *label;
+    int erreur;
+    int currenterr;
+    QLabel *comment;
+    QMainWindow *parent;
 
 	public slots:
-		void message();
-        void chrono();
+    void message();
+    void chrono();
 
-    public slots:
-        void menu();
+public slots:
+    void menu();
 
-    public :
+public :
         Deduction(QMainWindow *p);
-        ~Deduction();
-        bool verif();
-        void evaluation(float nombre);
+~Deduction();
+bool verif();
+void evaluation(float nombre);
 };
 #endif // DEDUCTION_H

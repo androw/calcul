@@ -26,101 +26,101 @@ Monome::Monome() {
 }
 
 Monome::Monome(float c,float coe,float res) {
-        constante =c;
-        coefficient = coe;
-        resultat = res;
+    constante =c;
+    coefficient = coe;
+    resultat = res;
 }
 
 float Monome::getConstante() {
-        return constante ;
+    return constante ;
 }
 
 void Monome::setConstante(float nc) {
-        constante = nc;
+    constante = nc;
 }
 
 float Monome::getCoefficient() {
-        return coefficient;
+    return coefficient;
 }
 
 void Monome::setCoefficient(float nc) {
-        coefficient = nc;
+    coefficient = nc;
 }
 
 float Monome::getResultat() {
-        return resultat;
+    return resultat;
 }
 
 void Monome::setResultat(float nr) {
-        resultat = nr;
+    resultat = nr;
 }
 
 float Monome::resolution() {
-        return (resultat - constante)/coefficient;
+    return (resultat - constante)/coefficient;
 }
 
 void Monome::exercice(float nombre) {
-        struct timeval tv1,tv2; //declaration des heures a venir
-        struct timezone tz;  //fuseau horaire (?)
-        srand(time(NULL));
-        float a;
-        int acc = 1;
-        float numerateur,denominateur;
-        cout << "Appuyez sur entree pour commencer l'exercice.\n";
-        getchar();
-        getchar();
-        gettimeofday(&tv1, &tz); //heure de depart
-        while (acc < 10) {
-                a = rand() % 6;
-                nombre += a;
-                coefficient = nombre;
-                constante = rand() % 10+1;
-                resultat = rand() % 10+1;
-                cout << coefficient<< "x + " << constante << " = " << resultat << endl << "x = \nNumerateur :";
-                cin >> numerateur;
-                cout << "\nDenominateur :";
-                cin >> denominateur;
-                while ((numerateur/denominateur) - resolution() > 0.0001) {
-                        cout << "FAUX ! \n";
-                        cout << coefficient<< "x + " << constante << " = " << resultat << endl << "x = \nNumerateur :";
-                        cin >> numerateur;
-                        cout << "\nDenominateur :";
-                        cin >> denominateur;
-                }
+    struct timeval tv1,tv2; //declaration des heures a venir
+    struct timezone tz;  //fuseau horaire (?)
+    srand(time(NULL));
+    float a;
+    int acc = 1;
+    float numerateur,denominateur;
+    cout << "Appuyez sur entree pour commencer l'exercice.\n";
+    getchar();
+    getchar();
+    gettimeofday(&tv1, &tz); //heure de depart
+    while (acc < 10) {
+        a = rand() % 6;
+        nombre += a;
+        coefficient = nombre;
+        constante = rand() % 10+1;
+        resultat = rand() % 10+1;
+        cout << coefficient<< "x + " << constante << " = " << resultat << endl << "x = \nNumerateur :";
+        cin >> numerateur;
+        cout << "\nDenominateur :";
+        cin >> denominateur;
+        while ((numerateur/denominateur) - resolution() > 0.0001) {
+            cout << "FAUX ! \n";
+            cout << coefficient<< "x + " << constante << " = " << resultat << endl << "x = \nNumerateur :";
+            cin >> numerateur;
+            cout << "\nDenominateur :";
+            cin >> denominateur;
+        }
         acc ++;
-        }
-        gettimeofday(&tv2, &tz); //heure de fin
-        bilan.setNote(10 - bilan.getErreur());
+    }
+    gettimeofday(&tv2, &tz); //heure de fin
+    bilan.setNote(10 - bilan.getErreur());
 
-        if (bilan.getNote() < 0) {
-                bilan.setNote(0);
-        }
-        bilan.setTime(tv2.tv_sec - tv1.tv_sec); //soustraction
+    if (bilan.getNote() < 0) {
+        bilan.setNote(0);
+    }
+    bilan.setTime(tv2.tv_sec - tv1.tv_sec); //soustraction
 }
 
 void Monome::evaluation(float nombre) {
-        exercice(nombre);
-        if (bilan.getNote() < 3) {
-                cout << " Looser ! ";
-        }
-        else if (bilan.getNote() < 5) {
-                cout << "Mouais. ";
-        }
-        else if (bilan.getNote() < 75) {
-                cout << "Pas mal ! ";
-        }
-        else {
-                cout << "WOUAOUHH !!! ";
-        }
-        if (bilan.getTime() < 30) {
-                cout << "Rapide comme l'éclair !\n";
-        }
-        else if (bilan.getTime() < 45) {
-                cout << "Pas trop lent\n";
-        }
-        else {
-                cout << "Escargal !!\n";
-        }
+    exercice(nombre);
+    if (bilan.getNote() < 3) {
+        cout << " Looser ! ";
+    }
+    else if (bilan.getNote() < 5) {
+        cout << "Mouais. ";
+    }
+    else if (bilan.getNote() < 75) {
+        cout << "Pas mal ! ";
+    }
+    else {
+        cout << "WOUAOUHH !!! ";
+    }
+    if (bilan.getTime() < 30) {
+        cout << "Rapide comme l'éclair !\n";
+    }
+    else if (bilan.getTime() < 45) {
+        cout << "Pas trop lent\n";
+    }
+    else {
+        cout << "Escargal !!\n";
+    }
 }
 
 

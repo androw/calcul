@@ -1,5 +1,3 @@
-
-
 //      Deduction.h
 //
 //      Copyright 2011 http://redmine.androw.eu/projects/tipe1112/
@@ -37,35 +35,35 @@
 class Boite2 : public Exercice {
     Q_OBJECT
 
-        protected:
-        double etude1;
-        double etude2;
-        QPushButton *m_bouton;
-        QPushButton *m_menu;
-        QLineEdit * reponse[10];
-        float taVariable[5];
-        int SECONDES;
-        int MINUTES;
-        QTimer *timerA;
-        QLabel *label;
-        int erreur;
-        int currenterr;
-        QLabel *comment;
-        QMainWindow *parent;
-        QComboBox *signe[5];
+protected:
+    double etude1;
+    double etude2;
+    QPushButton *m_bouton;
+    QPushButton *m_menu;
+    QLineEdit * reponse[10];
+    float taVariable[5];
+    int SECONDES;
+    int MINUTES;
+    QTimer *timerA;
+    QLabel *label;
+    int erreur;
+    int currenterr;
+    QLabel *comment;
+    QMainWindow *parent;
+    QComboBox *signe[5];
 
         public slots:
-            void message();
-            void chrono();
-            void menu();
+    void message();
+    void chrono();
+    void menu();
 
-    public :
+public :
         Boite2(QMainWindow *p,int e1,int e2);
-        ~Boite2();
-        bool verif(int etude1,int etude2);
-        bool repet(int);
-        bool verifsigne(int);
-        void evaluation(float nombre);
+~Boite2();
+bool verif(int etude1,int etude2);
+bool repet(int);
+bool verifsigne(int);
+void evaluation(float nombre);
 };
 
 #endif // Boite2_H

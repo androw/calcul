@@ -36,34 +36,34 @@
 class Equation : public Exercice {
     Q_OBJECT
 
-        protected:
-        QPushButton *m_bouton;
-        QPushButton *m_menu;
-        QLineEdit * numerateur[10];
-        QLineEdit * denominateur[10];
-        float taVariable;
-        Monome m[10];
+protected:
+    QPushButton *m_bouton;
+    QPushButton *m_menu;
+    QLineEdit * numerateur[10];
+    QLineEdit * denominateur[10];
+    float taVariable;
+    Monome m[10];
 
-        int SECONDES;
-        int MINUTES;
-        QTimer *timerA;
-        QLabel *label;
-        int erreur;
-        int currenterr;
-        QLabel *comment;
-        QMainWindow *parent;
+    int SECONDES;
+    int MINUTES;
+    QTimer *timerA;
+    QLabel *label;
+    int erreur;
+    int currenterr;
+    QLabel *comment;
+    QMainWindow *parent;
 
                 public slots:
-        void message();
-        void chrono();
+    void message();
+    void chrono();
 
         public slots:
-        void menu();
+    void menu();
 
-        public :
+public :
         Equation(QMainWindow *p);
-        ~Equation();
-         bool verif();
-         void evaluation(float nombre);
+~Equation();
+bool verif();
+void evaluation(float nombre);
 };
 #endif // Equation.h

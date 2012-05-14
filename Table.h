@@ -36,34 +36,34 @@
 class Table : public Exercice {
     Q_OBJECT
 
-        protected:
-        QPushButton *m_bouton;
-        QPushButton *m_menu;
-        QLineEdit * reponse[30];
-        float taVariable;
-        float taVariable2;
-        float taVariable3;
-        int SECONDES;
-        int MINUTES;
-        QTimer *timerA;
-        QLabel *label;
-        int erreur;
-        int currenterr;
-        QLabel *comment;
-        QMainWindow *parent;
+protected:
+    QPushButton *m_bouton;
+    QPushButton *m_menu;
+    QLineEdit * reponse[30];
+    float taVariable;
+    float taVariable2;
+    float taVariable3;
+    int SECONDES;
+    int MINUTES;
+    QTimer *timerA;
+    QLabel *label;
+    int erreur;
+    int currenterr;
+    QLabel *comment;
+    QMainWindow *parent;
 
 		public slots:
-		void message();
-        void chrono();
+    void message();
+    void chrono();
 
         public slots:
-        void menu();
+    void menu();
 
-        public :
+public :
         Table(QMainWindow *p);
-        ~Table();
-		bool verif();
-		void evaluation(float nombre);
+~Table();
+bool verif();
+void evaluation(float nombre);
 
 
 };

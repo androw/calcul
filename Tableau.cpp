@@ -27,10 +27,8 @@ Tableau::Tableau(QMainWindow *p)
     image->setPixmap(QPixmap("25.jpg"));
     image->setGeometry(0, 0, 800, 600);
     
-    
     fleche = new QLabel(this);
     aid = new QLabel("", this);
-    
 
     SECONDES = 00;
     MINUTES = 00;
@@ -96,7 +94,7 @@ Tableau::Tableau(QMainWindow *p)
                           min-width: 0em;\
                           border-color: black;\
                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                          stop: 0 #FF0000, stop: 1 #F5F5F5);");
+                                                            stop: 0 #FF0000, stop: 1 #F5F5F5);");
 
     m_menu = new QPushButton("Menu", this);
     m_menu->setToolTip("Retour au Menu");
@@ -123,7 +121,7 @@ Tableau::Tableau(QMainWindow *p)
                           border-radius: 10px;\
                           border-color: black;\
                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                          stop: 0 #FFFFFF, stop: 1 #BA55D3);");
+                                                            stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 
     
 
@@ -214,30 +212,30 @@ void Tableau::aide() {
 
 bool Tableau::verif() {
     if (suiv == 9){
-    currenterr = 0;
-    for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
-            verifDec((i+1)*taVariable, reponse[i]->text().toFloat());
-            reponse[i]->setStyleSheet("border-style: outset;\
-                                      background-color: #FF6347;\
-                                      border-width: 2px;\
-                                      border-radius: 10px;");
-            currenterr++;
-            erreur++;
-
-        }
-        if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
-            reponse[i]->setStyleSheet("border-style: outset;\
-                                      border-width: 2px;\
-                                      border-radius: 10px;");
-        }
-    }
+        currenterr = 0;
         for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
-            return false;
+            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+                verifDec((i+1)*taVariable, reponse[i]->text().toFloat());
+                reponse[i]->setStyleSheet("border-style: outset;\
+                                          background-color: #FF6347;\
+                                          border-width: 2px;\
+                                          border-radius: 10px;");
+                currenterr++;
+                erreur++;
+
+            }
+            if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+                reponse[i]->setStyleSheet("border-style: outset;\
+                                          border-width: 2px;\
+                                          border-radius: 10px;");
+            }
         }
-    }
-    return true;
+        for(int i=0; i<10;i++) {
+            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+                return false;
+            }
+        }
+        return true;
     }
     return false;
 }
@@ -246,7 +244,7 @@ void Tableau::message(){
     if(verif()) {
         timerA->stop();
         if(SECONDES<10) {
-                        QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }else {
             QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
@@ -256,8 +254,8 @@ void Tableau::message(){
 }
 
 void Tableau::evaluation(float nombre) {
-        if (erreur < 10) {
-                comment->setText("WOUAOUHH !!! ");
+    if (erreur < 10) {
+        comment->setText("WOUAOUHH !!! ");
     } else if (erreur < 15) {
         comment->setText( "Pas mal ! ");
     } else if (erreur < 25) {
@@ -280,12 +278,12 @@ void Tableau::chrono(){
     } else {
         label->setText( QString::number(MINUTES)+" : "+ QString::number(SECONDES) );
     }
-        if (SECONDES == 59) {
-                SECONDES=00;
-                MINUTES++;
-        }else {
-                SECONDES++;
-        }
+    if (SECONDES == 59) {
+        SECONDES=00;
+        MINUTES++;
+    }else {
+        SECONDES++;
+    }
 }
 
 void Tableau::menu() {
@@ -298,9 +296,9 @@ void Tableau::suivant() {
     if (reponse[suiva[suiv]]->text().toFloat() != (suiva[suiv]+1)*taVariable) {
         verifDec((suiva[suiv]+1)*taVariable, reponse[suiva[suiv]]->text().toFloat());
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
-                                  background-color: #FF6347;\
-                                  border-width: 2px;\
-                                  border-radius: 10px;");
+                                            background-color: #FF6347;\
+                                            border-width: 2px;\
+                                            border-radius: 10px;");
         currenterr++;
         
         erreur++;
@@ -308,8 +306,8 @@ void Tableau::suivant() {
         
     }else if (reponse[suiva[suiv]]->text().toFloat() == (suiva[suiv]+1)*taVariable &&  suiv < 9) {
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
-                                  border-width: 2px;\
-                                  border-radius: 10px;");
+                                            border-width: 2px;\
+                                            border-radius: 10px;");
         suiv++;
         
         QPropertyAnimation *animation3 = new QPropertyAnimation (reponse[suiva[suiv]], "geometry");

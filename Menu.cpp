@@ -30,13 +30,13 @@ Menu::Menu()
     nom = new QLineEdit("Nom",this);
     nom->setGeometry(600,100,110,30);
     nom->setStyleSheet("border-style: outset;\
-                              border-width: 2px;\
-                              border-radius: 10px;");
+                       border-width: 2px;\
+                       border-radius: 10px;");
     prenom = new QLineEdit("Prénom",this);
     prenom->setGeometry(480,100,110,30);
     prenom->setStyleSheet("border-style: outset;\
-                       border-width: 2px;\
-                       border-radius: 10px;");
+                          border-width: 2px;\
+                          border-radius: 10px;");
     
     classe = new QComboBox(this);
     classe->addItem("CM2");
@@ -70,7 +70,7 @@ Menu::Menu()
     m_slider = new QSlider(Qt::Horizontal, this);
     m_slider->setGeometry(350, 500, 100,20);
     m_slider->setRange(0, 800);
-            
+
     boite1->setFont(QFont("encilPete FONT", 20));
     boite2->setFont(QFont("encilPete FONT", 20));
     boite3->setFont(QFont("encilPete FONT", 20));
@@ -213,16 +213,16 @@ Menu::Menu()
     QRadioButton *Difficile = new QRadioButton("Autre");
 
     QVBoxLayout *vbox = new QVBoxLayout;
-        vbox->addWidget(Facile);
-        vbox->addWidget(Normal);
-        vbox->addWidget(Difficile);
+    vbox->addWidget(Facile);
+    vbox->addWidget(Normal);
+    vbox->addWidget(Difficile);
 
-        groupbox->setLayout(vbox);
-        groupbox->setGeometry(600, 490, 50, 100);
+    groupbox->setLayout(vbox);
+    groupbox->setGeometry(600, 490, 50, 100);
 
-        Facile->setChecked(true);
+    Facile->setChecked(true);
 
-	// m_bouton->setToolTip("vérifier bien votre résultat");
+    // m_bouton->setToolTip("vérifier bien votre résultat");
     QObject::connect(boite1, SIGNAL(clicked()), this, SLOT(aboite1()));
     QObject::connect(boite2, SIGNAL(clicked()), this, SLOT(aboite2()));
     QObject::connect(boite3, SIGNAL(clicked()), this, SLOT(aboite3()));
@@ -246,20 +246,20 @@ Menu::Menu()
     QObject::connect(Difficile, SIGNAL(clicked()), this, SLOT(difficil()));
     QObject::connect(m_slider, SIGNAL(valueChanged(int)), this, SLOT(deplacer()));
 
-	//CONSIGNE
-        QLabel *label1 = new QLabel("Mathémat'EISTI'c", this);
-	label1->setFont(QFont("PenclPete FONT", 18));
-	label1->setStyleSheet("color:White;");
-        label1->setGeometry(40, 23, 250, 50);
+    //CONSIGNE
+    QLabel *label1 = new QLabel("Mathémat'EISTI'c", this);
+    label1->setFont(QFont("PenclPete FONT", 18));
+    label1->setStyleSheet("color:White;");
+    label1->setGeometry(40, 23, 250, 50);
     label1->setStyleSheet("border-width: 2px;\
                           border-style: outset;\
                           border-width: 2px;\
                           border-radius: 10px;\
                           border-color: black;\
                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                          stop: 0 #FFFFFF, stop: 1 #BA55D3);");
+                                                            stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 
-     /*   QComboBox * Liste = new QComboBox(this);
+    /*   QComboBox * Liste = new QComboBox(this);
         Liste->addItem("Entraînement");
         Liste->addItem("Evaluation");
         Liste->addItem("Compétition");
@@ -794,16 +794,16 @@ void Menu::aequation() {
 }
 
 void Menu::deplacer() {
-   boite1->setGeometry(110 - m_slider->value(), 200, 100, 100);
-   boite2->setGeometry(320- m_slider->value(), 200, 100, 100);
-   boite3->setGeometry(530- m_slider->value(), 200, 100, 100);
-   boite4->setGeometry(110- m_slider->value(), 340, 100, 100);
-   boite5->setGeometry(320- m_slider->value(), 340, 100, 100);
-   boite6->setGeometry(530- m_slider->value(), 340, 100, 100);
-   boite7->setGeometry(110 - m_slider->value()+800, 200, 100, 100);
-   boite8->setGeometry(320- m_slider->value()+800, 200, 100, 100);
-   boite9->setGeometry(530- m_slider->value()+800, 200, 100, 100);
-   boite10->setGeometry(110- m_slider->value()+800, 340, 100, 100);
-   boite11->setGeometry(320- m_slider->value()+800, 340, 100, 100);
-   boite12->setGeometry(530- m_slider->value()+800, 340, 100, 100);
+    boite1->setGeometry(110 - m_slider->value(), 200, 100, 100);
+    boite2->setGeometry(320- m_slider->value(), 200, 100, 100);
+    boite3->setGeometry(530- m_slider->value(), 200, 100, 100);
+    boite4->setGeometry(110- m_slider->value(), 340, 100, 100);
+    boite5->setGeometry(320- m_slider->value(), 340, 100, 100);
+    boite6->setGeometry(530- m_slider->value(), 340, 100, 100);
+    boite7->setGeometry(110 - m_slider->value()+800, 200, 100, 100);
+    boite8->setGeometry(320- m_slider->value()+800, 200, 100, 100);
+    boite9->setGeometry(530- m_slider->value()+800, 200, 100, 100);
+    boite10->setGeometry(110- m_slider->value()+800, 340, 100, 100);
+    boite11->setGeometry(320- m_slider->value()+800, 340, 100, 100);
+    boite12->setGeometry(530- m_slider->value()+800, 340, 100, 100);
 }

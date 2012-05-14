@@ -36,32 +36,32 @@
 class Boite : public Exercice {
     Q_OBJECT
 
-        protected:
-        double etude1;
-        double etude2;
-        QPushButton *m_bouton;
-        QPushButton *m_menu;
-        QLineEdit * reponse[10];
-        float taVariable[5];
-        int SECONDES;
-        int MINUTES;
-        QTimer *timerA;
-        QLabel *label;
-        int erreur;
-        int currenterr;
-        QLabel *comment;
-        QMainWindow *parent;
+protected:
+    double etude1;
+    double etude2;
+    QPushButton *m_bouton;
+    QPushButton *m_menu;
+    QLineEdit * reponse[10];
+    float taVariable[5];
+    int SECONDES;
+    int MINUTES;
+    QTimer *timerA;
+    QLabel *label;
+    int erreur;
+    int currenterr;
+    QLabel *comment;
+    QMainWindow *parent;
 
         public slots:
-            void message();
-            void chrono();
-            void menu();
+    void message();
+    void chrono();
+    void menu();
 
-    public :
+public :
         Boite(QMainWindow *p,int e1,int e2);
-        ~Boite();
-        bool verif(int etude1,int etude2);
-        bool repet(int);
-        void evaluation(float nombre);
+~Boite();
+bool verif(int etude1,int etude2);
+bool repet(int);
+void evaluation(float nombre);
 };
 #endif // BOITE_H

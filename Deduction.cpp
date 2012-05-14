@@ -114,18 +114,18 @@ Deduction::Deduction(QMainWindow *p)
         calcul[i+20]->setFont(QFont("PecilPete FONT", 14));
     }
 
-     //CONSIGNE
-     QLabel *label1 = new QLabel("Compléter ces tables de multiplication", this);
-     label1->setFont(QFont("PenclPete FONT", 18));
-     label1->setStyleSheet("color:White;");
-     label1->setGeometry(40, 23, 500, 50);
-     label1->setStyleSheet("border-width: 2px;\
-                           border-style: outset;\
-                           border-width: 2px;\
-                           border-radius: 10px;\
-                           border-color: black;\
-                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
-                           stop: 0 #FFFFFF, stop: 1 #BA55D3);");
+    //CONSIGNE
+    QLabel *label1 = new QLabel("Compléter ces tables de multiplication", this);
+    label1->setFont(QFont("PenclPete FONT", 18));
+    label1->setStyleSheet("color:White;");
+    label1->setGeometry(40, 23, 500, 50);
+    label1->setStyleSheet("border-width: 2px;\
+                          border-style: outset;\
+                          border-width: 2px;\
+                          border-radius: 10px;\
+                          border-color: black;\
+                          background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
+                                                            stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 
 
 }
@@ -153,9 +153,9 @@ bool Deduction::verif() {
     for(int i=0; i<10;i++) {
         if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
-                                      background-color: #FF6347;\
-                                      border-width: 2px;\
-                                      border-radius: 10px;");
+                                         background-color: #FF6347;\
+                                         border-width: 2px;\
+                                         border-radius: 10px;");
             currenterr++;
             erreur++;
             progress->setValue(erreur*20);
@@ -163,25 +163,25 @@ bool Deduction::verif() {
         }
         if(reponse[i+10]->text().toFloat() == (i+1)*taVariable2) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
-                                      border-width: 2px;\
-                                      border-radius: 10px;");
+                                         border-width: 2px;\
+                                         border-radius: 10px;");
 
         }
     }
     for(int i=0; i<10;i++) {
         if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
-                                      background-color: #FF6347;\
-                                      border-width: 2px;\
-                                      border-radius: 10px;");
+                                         background-color: #FF6347;\
+                                         border-width: 2px;\
+                                         border-radius: 10px;");
             currenterr++;
             erreur++;
 
         }
         if(reponse[i+20]->text().toFloat() == (i+1)*taVariable3) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
-                                      border-width: 2px;\
-                                      border-radius: 10px;");
+                                         border-width: 2px;\
+                                         border-radius: 10px;");
 
         }
     }
@@ -210,7 +210,7 @@ void Deduction::message(){
     if(verif()) {
         timerA->stop();
         if(SECONDES<10) {
-        QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }else {
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
@@ -221,36 +221,36 @@ void Deduction::message(){
 
 
 void Deduction::evaluation(float nombre) {
-	if (erreur < 10) {
-                comment->setText("WOUAOUHH !!! ");
-	} else if (erreur < 15) {
-                comment->setText( "Pas mal ! ");
-	} else if (erreur < 25) {
-                comment->setText("Mouais ..");
-	} else {
-                comment->setText( "LOOSER");
-        }
-        if (MINUTES < 2) {
-                comment->setText( "Rapide comme l'éclair !");
-        } else if (MINUTES < 3) {
-                comment->setText("Pas trop lent");
-        } else {
-                comment->setText( "Escargal !!");
-        }
+    if (erreur < 10) {
+        comment->setText("WOUAOUHH !!! ");
+    } else if (erreur < 15) {
+        comment->setText( "Pas mal ! ");
+    } else if (erreur < 25) {
+        comment->setText("Mouais ..");
+    } else {
+        comment->setText( "LOOSER");
+    }
+    if (MINUTES < 2) {
+        comment->setText( "Rapide comme l'éclair !");
+    } else if (MINUTES < 3) {
+        comment->setText("Pas trop lent");
+    } else {
+        comment->setText( "Escargal !!");
+    }
 }
 
 void Deduction::chrono(){
-	if(SECONDES<10) {
+    if(SECONDES<10) {
         label->setText(QString::number(MINUTES)+" : 0"+ QString::number(SECONDES) );
     }else {
         label->setText( QString::number(MINUTES)+" : "+ QString::number(SECONDES) );
     }
-	if (SECONDES == 59) {
-		SECONDES = 00;
-		MINUTES++;
-	}else {
-		SECONDES++;
-	}
+    if (SECONDES == 59) {
+        SECONDES = 00;
+        MINUTES++;
+    }else {
+        SECONDES++;
+    }
 }
 
 void Deduction::menu() {

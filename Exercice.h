@@ -39,13 +39,13 @@ using namespace std;
 
 class Exercice : public QDialog
 {
-Q_OBJECT
+    Q_OBJECT
 
-    protected:
+protected:
     Bilan bilan;
     QProgressBar *progress;
 
-    public:
+public:
     Exercice();
     virtual void evaluation(float nombre) = 0;
     void verifDec(double a, double b);

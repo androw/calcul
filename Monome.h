@@ -24,23 +24,23 @@
 #include "Exercice.h"
 
 class Monome : public Exercice {
-        protected :
+protected :
         float constante;
-        float coefficient;
-        float resultat;
+float coefficient;
+float resultat;
 
-        public :
+public :
         Monome();
-        Monome(float c,float coe,float res);
-        float getConstante();
-        void setConstante(float nc);
-        float getCoefficient();
-        void setCoefficient(float nc);
-        float getResultat();
-        void setResultat(float nr);
-        void affichage();
-        float resolution();
-        void exercice(float nombre);
-        void evaluation(float nombre);
+Monome(float c,float coe,float res);
+float getConstante();
+void setConstante(float nc);
+float getCoefficient();
+void setCoefficient(float nc);
+float getResultat();
+void setResultat(float nr);
+void affichage();
+float resolution();
+void exercice(float nombre);
+void evaluation(float nombre);
 };
 #endif

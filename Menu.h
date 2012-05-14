@@ -46,59 +46,59 @@
 class Menu : public QMainWindow {
     Q_OBJECT
 
-        protected:
-        QPushButton *boite1;
-        QPushButton *boite2;
-        QPushButton *boite3;
-        QPushButton *boite4;
-        QPushButton *boite5;
-        QPushButton *boite6;
-        QPushButton *boite7;
-        QPushButton *boite8;
-        QPushButton *boite9;
-        QPushButton *boite10;
-        QPushButton *boite11;
-        QPushButton *boite12;
-        QPushButton *serie;
-        QPushButton *tablem;
-        QPushButton *grad;
-        QPushButton *dedu;
-        QPushButton *equation;
-        QPushButton *devFac;
-        QPushButton *tableau;
-        QPropertyAnimation *animation1;
-        QPropertyAnimation *animation2;
-        QLineEdit *prenom;
-        QLineEdit *nom;
-        QComboBox *classe;
-        QSlider *m_slider;
+protected:
+    QPushButton *boite1;
+    QPushButton *boite2;
+    QPushButton *boite3;
+    QPushButton *boite4;
+    QPushButton *boite5;
+    QPushButton *boite6;
+    QPushButton *boite7;
+    QPushButton *boite8;
+    QPushButton *boite9;
+    QPushButton *boite10;
+    QPushButton *boite11;
+    QPushButton *boite12;
+    QPushButton *serie;
+    QPushButton *tablem;
+    QPushButton *grad;
+    QPushButton *dedu;
+    QPushButton *equation;
+    QPushButton *devFac;
+    QPushButton *tableau;
+    QPropertyAnimation *animation1;
+    QPropertyAnimation *animation2;
+    QLineEdit *prenom;
+    QLineEdit *nom;
+    QComboBox *classe;
+    QSlider *m_slider;
 
         public slots:
-        void facil();
-        void normal();
-        void difficil();
-        void aboite1();
-        void aboite2();
-        void aboite3();
-        void aboite4();
-        void aboite5();
-        void aboite6();
-        void aboite7();
-        void aboite8();
-        void aboite9();
-        void aboite10();
-        void aboite11();
-        void aboite12();
-        void aserie();
-        void atable();
-        void adedu();
-        void agrad();
-        void aequation();
-        void atableau();
-        void deplacer();
-        signals:
+    void facil();
+    void normal();
+    void difficil();
+    void aboite1();
+    void aboite2();
+    void aboite3();
+    void aboite4();
+    void aboite5();
+    void aboite6();
+    void aboite7();
+    void aboite8();
+    void aboite9();
+    void aboite10();
+    void aboite11();
+    void aboite12();
+    void aserie();
+    void atable();
+    void adedu();
+    void agrad();
+    void aequation();
+    void atableau();
+    void deplacer();
+signals:
 
-        public :
+public :
         Menu();
 };
 #endif // MENU_H

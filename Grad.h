@@ -38,38 +38,38 @@ class ExerciceGraduation : public Exercice {
     Q_OBJECT
 
 
-        protected:
-        QPushButton *m_bouton;
-        QPushButton *m_menu;
-        QLineEdit * reponse[9];
-        double corrige[9];
-        double taVariable;
-        int place;
-        int SECONDES;
-        int MINUTES;
-        QTimer *timerA;
-        QLabel *label;
-        int erreur;
-        int currenterr;
-        QLabel *comment;
-        QMainWindow *parent;
+protected:
+    QPushButton *m_bouton;
+    QPushButton *m_menu;
+    QLineEdit * reponse[9];
+    double corrige[9];
+    double taVariable;
+    int place;
+    int SECONDES;
+    int MINUTES;
+    QTimer *timerA;
+    QLabel *label;
+    int erreur;
+    int currenterr;
+    QLabel *comment;
+    QMainWindow *parent;
 
 
 
 
 public slots:
-       void message();
-        void chrono();
+    void message();
+    void chrono();
 
         public slots:
-        void menu();
+    void menu();
 
 
-        public :
+public :
         ExerciceGraduation(QMainWindow *p);
-        ~ExerciceGraduation();
-         bool verif();
-         void evaluation(float nombre);
+~ExerciceGraduation();
+bool verif();
+void evaluation(float nombre);
 
 
 };
