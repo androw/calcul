@@ -48,12 +48,17 @@ Boite::Boite(QMainWindow *p,int e1,int e2)
     srand(time(NULL));
     for(int i = 0;i<5;i++) {
         taVariable[i] = rand()%20+11;
+        while(repet(i) && i>0){
+        taVariable[i] = rand()%20+11;
+        }
+
     }
+
 
     //BOUTON VALIDATION
 
     m_bouton = new QPushButton("Valider", this);
-    m_bouton->setToolTip("vérifier bien votre résultat");
+    m_bouton->setToolTip("Vérifier bien votre résultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(180+60, 450+110);
@@ -127,7 +132,7 @@ Boite::Boite(QMainWindow *p,int e1,int e2)
 
 
      //CONSIGNE
-     QLabel *label1 = new QLabel("Remplissez les Cases avec le bon rŽsultat", this);
+     QLabel *label1 = new QLabel("Compléter ces calculs", this);
      label1->setFont(QFont("PenclPete FONT", 18));
      label1->setStyleSheet("color:White;");
      label1->setGeometry(40, 23, 500, 50);
@@ -200,9 +205,9 @@ void Boite::message(){
     if(verif(etude1,etude2)) {
         timerA->stop();
         if(SECONDES<10) {
-        QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+        QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }else {
-            QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
         QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
@@ -246,6 +251,16 @@ void Boite::chrono(){
 void Boite::menu() {
     close();
     parent->show();
+}
+
+bool Boite::repet(int i) {
+    int jj;
+    for(jj=i-1;jj>-1;jj--) {
+        if(taVariable[i] == taVariable[jj]){
+            return true;
+        }
+     }
+    return false;
 }
 
 Boite::~Boite() {

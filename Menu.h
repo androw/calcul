@@ -36,6 +36,7 @@
 
 #include "ExerciceSerie.h"
 #include "Boite.h"
+#include "Boite2.h"
 #include "Table.h"
 #include "Deduction.h"
 #include "Grad.h"
@@ -51,6 +52,13 @@ class Menu : public QMainWindow {
         QPushButton *boite3;
         QPushButton *boite4;
         QPushButton *boite5;
+        QPushButton *boite6;
+        QPushButton *boite7;
+        QPushButton *boite8;
+        QPushButton *boite9;
+        QPushButton *boite10;
+        QPushButton *boite11;
+        QPushButton *boite12;
         QPushButton *serie;
         QPushButton *tablem;
         QPushButton *grad;
@@ -63,6 +71,7 @@ class Menu : public QMainWindow {
         QLineEdit *prenom;
         QLineEdit *nom;
         QComboBox *classe;
+        QSlider *m_slider;
 
         public slots:
         void facil();
@@ -73,12 +82,20 @@ class Menu : public QMainWindow {
         void aboite3();
         void aboite4();
         void aboite5();
+        void aboite6();
+        void aboite7();
+        void aboite8();
+        void aboite9();
+        void aboite10();
+        void aboite11();
+        void aboite12();
         void aserie();
         void atable();
         void adedu();
         void agrad();
         void aequation();
         void atableau();
+        void deplacer();
         signals:
 
         public :

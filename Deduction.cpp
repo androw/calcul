@@ -58,7 +58,7 @@ Deduction::Deduction(QMainWindow *p)
     //BOUTON VALIDATION
 
     m_bouton = new QPushButton("Valider", this);
-    m_bouton->setToolTip("vérifier bien votre résultat");
+    m_bouton->setToolTip("Vérifier bien votre résultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(180+60, 450+110);
@@ -115,7 +115,7 @@ Deduction::Deduction(QMainWindow *p)
     }
 
      //CONSIGNE
-     QLabel *label1 = new QLabel("Remplissez les Cases avec le bon résultat", this);
+     QLabel *label1 = new QLabel("Compléter ces tables de multiplication", this);
      label1->setFont(QFont("PenclPete FONT", 18));
      label1->setStyleSheet("color:White;");
      label1->setGeometry(40, 23, 500, 50);
@@ -210,9 +210,9 @@ void Deduction::message(){
     if(verif()) {
         timerA->stop();
         if(SECONDES<10) {
-        QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+        QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }else {
-            QMessageBox::information(this, "Felicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
         QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
