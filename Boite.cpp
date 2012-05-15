@@ -156,7 +156,10 @@ Boite::Boite(QMainWindow *p,int e1,int e2)
 }
 
 void Boite::consigne() {
-    
+    QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
+    popup1->resize(150,100);
+    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->show();
 }
 
 bool Boite::verif(int etude1,int etude2) {

@@ -141,7 +141,10 @@ Table::Table(QMainWindow *p)
                                                             stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 }
 void Table::consigne() {
-    
+    QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
+    popup1->resize(150,100);
+    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->show();
 }
 
 bool Table::verif() {

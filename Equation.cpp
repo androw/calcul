@@ -140,7 +140,10 @@ Equation::Equation(QMainWindow *p)
 }
 
 void Equation::consigne() {
-    
+    QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
+    popup1->resize(150,100);
+    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->show();
 }
 
 bool Equation::verif() {
