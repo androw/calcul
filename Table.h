@@ -39,6 +39,7 @@ class Table : public Exercice {
 protected:
     QPushButton *m_bouton;
     QPushButton *m_menu;
+    QPushButton *m_consigne;
     QLineEdit * reponse[30];
     float taVariable;
     float taVariable2;
@@ -55,6 +56,7 @@ protected:
 		public slots:
     void message();
     void chrono();
+    void consigne();
 
         public slots:
     void menu();

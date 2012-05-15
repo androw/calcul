@@ -41,6 +41,7 @@ protected:
     double etude2;
     QPushButton *m_bouton;
     QPushButton *m_menu;
+    QPushButton *m_consigne;
     QLineEdit * reponse[10];
     float taVariable[5];
     int SECONDES;
@@ -52,16 +53,17 @@ protected:
     QLabel *comment;
     QMainWindow *parent;
 
-        public slots:
+public slots:
     void message();
     void chrono();
+    void consigne();
     void menu();
 
 public :
-        Boite(QMainWindow *p,int e1,int e2);
-~Boite();
-bool verif(int etude1,int etude2);
-bool repet(int);
-void evaluation(float nombre);
+    Boite(QMainWindow *p,int e1,int e2);
+    ~Boite();
+    bool verif(int etude1,int etude2);
+    bool repet(int);
+    void evaluation(float nombre);
 };
 #endif // BOITE_H

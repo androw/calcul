@@ -37,10 +37,10 @@
 class ExerciceGraduation : public Exercice {
     Q_OBJECT
 
-
 protected:
     QPushButton *m_bouton;
     QPushButton *m_menu;
+    QPushButton *m_consigne;
     QLineEdit * reponse[9];
     double corrige[9];
     double taVariable;
@@ -54,25 +54,18 @@ protected:
     QLabel *comment;
     QMainWindow *parent;
 
-
-
-
 public slots:
     void message();
     void chrono();
-
-        public slots:
+    void consigne();
     void menu();
 
 
 public :
-        ExerciceGraduation(QMainWindow *p);
-~ExerciceGraduation();
-bool verif();
-void evaluation(float nombre);
-
-
+    ExerciceGraduation(QMainWindow *p);
+    ~ExerciceGraduation();
+    bool verif();
+    void evaluation(float nombre);
 };
-
 
 #endif // GRAD_H

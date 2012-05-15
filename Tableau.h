@@ -24,6 +24,7 @@ protected:
     QPushButton *m_menu;
     QPushButton *m_next;
     QPushButton *m_help;
+    QPushButton *m_consigne;
     QLineEdit * reponse[30];
     float taVariable;
     float taVariable2;
@@ -46,6 +47,7 @@ protected:
     void chrono();
     void suivant();
     void aide();
+    void consigne();
 
         public slots:
     void menu();

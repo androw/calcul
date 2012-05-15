@@ -73,7 +73,7 @@ Tableau::Tableau(QMainWindow *p)
     m_bouton->setToolTip("Vérifier bien votre résultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
-    m_bouton->move(180+60, 450+110);
+    m_bouton->move(140+60, 450+110);
 
     m_next = new QPushButton("Suivant", this);
     m_next->setToolTip("Vérifier bien votre résultat");
@@ -100,15 +100,20 @@ Tableau::Tableau(QMainWindow *p)
     m_menu->setToolTip("Retour au Menu");
     m_menu->setFont(QFont("encilPete FONT", 14));
     m_menu->setCursor(Qt::PointingHandCursor);
-    m_menu->move(380+60, 450+110);
+    m_menu->move(340+60, 450+110);
+    
+    m_consigne = new QPushButton("Consigne", this);
+    m_consigne->setToolTip("Afficher la consigne");
+    m_consigne->setFont(QFont("encilPete FONT", 14));
+    m_consigne->setCursor(Qt::PointingHandCursor);
+    m_consigne->move(540+60, 450+110);
 
     QObject::connect(m_bouton, SIGNAL(clicked()), this, SLOT(message()));
     QObject::connect(m_menu, SIGNAL(clicked()), this, SLOT(menu()));
     QObject::connect(m_next, SIGNAL(clicked()), this, SLOT(suivant()));
     QObject::connect(m_help, SIGNAL(clicked()), this, SLOT(aide()));
+    QObject::connect(m_consigne, SIGNAL(clicked()), this, SLOT(consigne()));
     
-
-
     
     //CONSIGNE
     QLabel *label1 = new QLabel(" Faire la table de "+ QString::number(taVariable), this);
@@ -123,13 +128,8 @@ Tableau::Tableau(QMainWindow *p)
                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
                                                             stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 
-    
-
 
     QLabel * calcul[10];
-    
-    
-    
 
     for(int i=0;i<10;i++){
         calcul[i] = new  QLabel(" x "+ QString::number(i+1),this);
@@ -143,10 +143,10 @@ Tableau::Tableau(QMainWindow *p)
     }
     
     reponse[suiva[suiv]]->setGeometry(50+80*suiva[suiv],320,50,20);
+}
+
+void Tableau::consigne() {
     
-
-
-
 }
 
 void Tableau::aide() {

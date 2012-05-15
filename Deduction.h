@@ -39,6 +39,7 @@ class Deduction : public Exercice {
 protected:
     QPushButton *m_bouton;
     QPushButton *m_menu;
+    QPushButton *m_consigne;
     QLineEdit * reponse[30];
     float taVariable;
     float taVariable2;
@@ -52,17 +53,16 @@ protected:
     QLabel *comment;
     QMainWindow *parent;
 
-	public slots:
+public slots:
     void message();
     void chrono();
-
-public slots:
+    void consigne();
     void menu();
 
 public :
-        Deduction(QMainWindow *p);
-~Deduction();
-bool verif();
-void evaluation(float nombre);
+    Deduction(QMainWindow *p);
+    ~Deduction();
+    bool verif();
+    void evaluation(float nombre);
 };
 #endif // DEDUCTION_H

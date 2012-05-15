@@ -52,16 +52,23 @@ ExerciceSerie::ExerciceSerie(QMainWindow *p)
     m_bouton->setToolTip("Vérifier bien votre résultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
-    m_bouton->move(180+60, 450+110);
+    m_bouton->move(140+60, 450+110);
 
     m_menu = new QPushButton("Menu", this);
     m_menu->setToolTip("Retour au Menu");
     m_menu->setFont(QFont("encilPete FONT", 14));
     m_menu->setCursor(Qt::PointingHandCursor);
-    m_menu->move(380+60, 450+110);
+    m_menu->move(340+60, 450+110);
+    
+    m_consigne = new QPushButton("Consigne", this);
+    m_consigne->setToolTip("Afficher la consigne");
+    m_consigne->setFont(QFont("encilPete FONT", 14));
+    m_consigne->setCursor(Qt::PointingHandCursor);
+    m_consigne->move(540+60, 450+110);
 
     QObject::connect(m_bouton, SIGNAL(clicked()), this, SLOT(message()));
     QObject::connect(m_menu, SIGNAL(clicked()), this, SLOT(menu()));
+    QObject::connect(m_consigne, SIGNAL(clicked()), this, SLOT(consigne()));
     //QObject::connect(m_menu, SIGNAL(clicked()), qApp, SLOT(quit()));
 
     for(int i=0;i<10;i++){
@@ -113,6 +120,10 @@ ExerciceSerie::ExerciceSerie(QMainWindow *p)
                                                             stop: 0 #FFFFFF, stop: 1 #BA55D3);");
 
 
+}
+
+void ExerciceSerie::consigne() {
+    
 }
 
 bool ExerciceSerie::verif() {

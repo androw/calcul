@@ -39,11 +39,11 @@ class Equation : public Exercice {
 protected:
     QPushButton *m_bouton;
     QPushButton *m_menu;
+    QPushButton *m_consigne;
     QLineEdit * numerateur[10];
     QLineEdit * denominateur[10];
     float taVariable;
     Monome m[10];
-
     int SECONDES;
     int MINUTES;
     QTimer *timerA;
@@ -53,17 +53,16 @@ protected:
     QLabel *comment;
     QMainWindow *parent;
 
-                public slots:
+public slots:
     void message();
     void chrono();
-
-        public slots:
+    void consigne();
     void menu();
 
 public :
-        Equation(QMainWindow *p);
-~Equation();
-bool verif();
-void evaluation(float nombre);
+    Equation(QMainWindow *p);
+    ~Equation();
+    bool verif();
+    void evaluation(float nombre);
 };
 #endif // Equation.h

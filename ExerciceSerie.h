@@ -40,6 +40,7 @@ class ExerciceSerie : public Exercice {
 protected:
     QPushButton *m_bouton;
     QPushButton *m_menu;
+    QPushButton *m_consigne;
     QLineEdit * reponse[30];
     float taVariable;
     int SECONDES;
@@ -54,8 +55,7 @@ protected:
 public slots:
     void message();
     void chrono();
-
-        public slots:
+    void consigne();
     void menu();
 
 public :
