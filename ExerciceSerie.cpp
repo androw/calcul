@@ -124,8 +124,11 @@ ExerciceSerie::ExerciceSerie(QMainWindow *p)
 
 void ExerciceSerie::consigne() {
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(150,100);
-    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->resize(500,80);
+    QLabel *text1 = new QLabel("Aide", popup1);
+    QLabel *text2 = new QLabel("Compléter la table imposée jusqu'à 30. Vous pouvez vous aider de la partie \nallant de 1 à 10 pour en déduire la suite de la table.", popup1);
+    text1->move(10, 10);
+    text2->move(10,30);
     popup1->show();
 }
 

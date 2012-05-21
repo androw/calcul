@@ -151,8 +151,11 @@ Boite2::Boite2(QMainWindow *p,int e1,int e2)
                           
 void Boite2::consigne() {
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(150,100);
-    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->resize(500,300);
+    QLabel *text1 = new QLabel("Aide", popup1);
+    QLabel *text2 = new QLabel("Même exercice que pour le calcul dans les boites sauf qu?il faut ici retrouver \nles termes qui ont permis de trouver les resultats inscrits ainsi que \nleurs opérateurs associés (+,-,*,/).", popup1);
+    text1->move(10, 10);
+    text2->move(10,30);
     popup1->show();
 }
 

@@ -60,7 +60,7 @@ Equation::Equation(QMainWindow *p)
     //BOUTON VALIDATION
 
     m_bouton = new QPushButton("Valider", this);
-    m_bouton->setToolTip("VÃ©rifier bien votre rÃ©sultat");
+    m_bouton->setToolTip("Vérifier bien votre résultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(140+60, 450+110);
@@ -124,7 +124,7 @@ Equation::Equation(QMainWindow *p)
 
 
     //CONSIGNE
-    QLabel *label1 = new QLabel("RÃ©soudre ces Ã©quations", this);
+    QLabel *label1 = new QLabel("Résoudre ces équations", this);
     label1->setFont(QFont("PenclPete FONT", 18));
     label1->setStyleSheet("color:White;");
     label1->setGeometry(40, 23, 500, 50);
@@ -141,8 +141,11 @@ Equation::Equation(QMainWindow *p)
 
 void Equation::consigne() {
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(150,100);
-    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->resize(500,300);
+    QLabel *text1 = new QLabel("Aide", popup1);
+    QLabel *text2 = new QLabel("Il faut retrouver la valeur de x. Pour cela, il faut d'abord transposer le \nterme de droite puis passer le coefficient de l'autre coté de l'égalité. \n1)     A*x + B = C \n2)     A*x = C ? B \n3)     x = (C-B)/A", popup1);
+    text1->move(10, 10);
+    text2->move(10,30);
     popup1->show();
 }
 

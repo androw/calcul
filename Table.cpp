@@ -128,7 +128,7 @@ Table::Table(QMainWindow *p)
     }
 
     //CONSIGNE
-    QLabel *label1 = new QLabel("Remplissez les Cases avec le bon rsultat", this);
+    QLabel *label1 = new QLabel("Remplissez les Cases avec le bon résultat", this);
     label1->setFont(QFont("PenclPete FONT", 18));
     label1->setStyleSheet("color:White;");
     label1->setGeometry(40, 23, 500, 50);
@@ -142,8 +142,11 @@ Table::Table(QMainWindow *p)
 }
 void Table::consigne() {
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(150,100);
-    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->resize(500,50);
+    QLabel *text1 = new QLabel("Aide", popup1);
+    QLabel *text2 = new QLabel("Exercice de révision. Complétez les tables de multiplications demandées.", popup1);
+    text1->move(10, 10);
+    text2->move(10,30);
     popup1->show();
 }
 
@@ -219,9 +222,9 @@ void Table::message(){
     if(verif()) {
         timerA->stop();
         if(SECONDES<10) {
-            QMessageBox::information(this, "Felicitation", "Vous avez rsolue le problme avec succs en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":0" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }else {
-            QMessageBox::information(this, "Felicitation", "Vous avez rsolue le problme avec succs en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
+            QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
         QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");

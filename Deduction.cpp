@@ -139,8 +139,11 @@ Deduction::Deduction(QMainWindow *p)
 
 void Deduction::consigne() {
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(150,100);
-    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->resize(500,300);
+    QLabel *text1 = new QLabel("Aide", popup1);
+    QLabel *text2 = new QLabel("Remplissez d'abord la première table de multiplication (celle de gauche) \nqui est la plus simple. A partir de celle-ci, vous pouvez retrouver les deux \nautres tables qui, elles, sont plus complexes.", popup1);
+    text1->move(10, 10);
+    text2->move(10,30);
     popup1->show();
 }
 

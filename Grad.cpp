@@ -116,8 +116,11 @@ ExerciceGraduation::ExerciceGraduation(QMainWindow *p)
 
 void ExerciceGraduation::consigne() {
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(150,100);
-    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->resize(500,300);
+    QLabel *text1 = new QLabel("Aide", popup1);
+    QLabel *text2 = new QLabel("Il faut réussir à graduer la droite comme une rêgle. Le plus simple est de \ntrouver le pas, c'est-à-dire la valeur ajoutée à chaque segment par rapport \nà son précédent. Il suffira ainsi d'ajouter ce pas à chaque segment.", popup1);
+    text1->move(10, 10);
+    text2->move(10,30);
     popup1->show();
 }
 

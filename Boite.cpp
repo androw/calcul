@@ -157,8 +157,11 @@ Boite::Boite(QMainWindow *p,int e1,int e2)
 
 void Boite::consigne() {
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(150,100);
-    QLabel *tmpE = new QLabel("Aide", popup1);
+    popup1->resize(500,300);
+    QLabel *text1 = new QLabel("Aide", popup1);
+    QLabel *text2 = new QLabel("Il faut ici effectuer une multiplication difficile.\nPour cela, le calcul est décomposé en deux étapes.\nDans la case centrale, il faut donner un resultat intermédiaire donné par \nl'opération suivante :\nNombre initial * coefficient de gauche = resultat intermédiaire.\nEnfin, pour trouver la solution final, vous pouvez utiliser ce nombre afin \nd?obtenir le resultat dans le cadre de droite.", popup1);
+    text1->move(10, 10);
+    text2->move(10,30);
     popup1->show();
 }
 
