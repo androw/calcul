@@ -228,27 +228,8 @@ void Boite::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
-    }
-}
-
-
-void Boite::evaluation(float nombre) {
-    if (erreur < 10) {
-        comment->setText("WOUAOUHH !!! ");
-    } else if (erreur < 15) {
-        comment->setText( "Pas mal ! ");
-    } else if (erreur < 25) {
-        comment->setText("Mouais ..");
-    } else {
-        comment->setText( "LOOSER");
-    }
-    if (MINUTES < 2) {
-        comment->setText( "Rapide comme l'éclair !");
-    } else if (MINUTES < 3) {
-        comment->setText("Pas trop lent");
-    } else {
-        comment->setText( "Escargal !!");
+	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice."); 	
+        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");
     }
 }
 

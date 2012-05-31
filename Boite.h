@@ -64,6 +64,5 @@ public :
     ~Boite();
     bool verif(int etude1,int etude2);
     bool repet(int);
-    void evaluation(float nombre);
 };
 #endif // BOITE_H
