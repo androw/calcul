@@ -27,25 +27,6 @@ Menu::Menu()
     image->setPixmap(QPixmap("22.jpg"));
     image->setGeometry(0, 0, 800, 600);
     
-    nom = new QLineEdit("Nom",this);
-    nom->setGeometry(600,100,110,30);
-    nom->setStyleSheet("border-style: outset;\
-                       border-width: 2px;\
-                       border-radius: 10px;");
-    prenom = new QLineEdit("Prénom",this);
-    prenom->setGeometry(480,100,110,30);
-    prenom->setStyleSheet("border-style: outset;\
-                          border-width: 2px;\
-                          border-radius: 10px;");
-    
-    classe = new QComboBox(this);
-    classe->addItem("CM2");
-    classe->addItem("6eme");
-    classe->addItem("5eme");
-    classe->addItem("4eme");
-    classe->addItem("3eme");
-    classe->setGeometry(720, 100, 70,30);
-
     //BOUTON VALIDATION
     boite1 = new QPushButton("Boite x4", this);
     boite2 = new QPushButton("Boite x20", this);
