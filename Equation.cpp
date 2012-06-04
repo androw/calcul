@@ -85,12 +85,12 @@ Equation::Equation(QMainWindow *p)
 
     for(int i=0;i<10;i++){
         numerateur[i] = new QLineEdit("",this);
-        numerateur[i]->setGeometry(520, 10*i+20+40+30*i+80,50,20);
+        numerateur[i]->setGeometry(480, 10*i+40+30*i+80,50,20);
 
     }
     for(int i=0;i<10;i++){
         denominateur[i] = new QLineEdit("",this);
-        denominateur[i]->setGeometry(590, 10*i+20+40+30*i+80,50,20);
+        denominateur[i]->setGeometry(550, 10*i+40+30*i+80,50,20);
 
     }
 
@@ -104,19 +104,19 @@ Equation::Equation(QMainWindow *p)
 
     for(int i=0;i<10;i++){
         calcul[i] = new  QLabel(QString::number(m[i].getCoefficient()) +" x + "+ QString::number(m[i].getConstante()) +" = "+ QString::number(m[i].getResultat())+"  ",this);
-        calcul[i]->setGeometry(300, 10*i+15+40+30*i+80,140,40);
+        calcul[i]->setGeometry(280, 10*i-5+40+30*i+80,140,40);
         calcul[i]->setFont(QFont("PncilPete FONT", 14));
     }
 
     for(int i=0;i<10;i++){
         traitfraction[i] = new  QLabel("/",this);
-        traitfraction[i]->setGeometry(575,10*i+20+30+30*i+80,15,40);
+        traitfraction[i]->setGeometry(535,10*i+30+30*i+80,15,40);
         traitfraction[i]->setFont(QFont("PncilPete FONT", 14));
     }
 
     for(int i=0;i<10;i++){
         traitfraction[i] = new  QLabel("x =",this);
-        traitfraction[i]->setGeometry(470,10*i+20+30+30*i+80,30,40);
+        traitfraction[i]->setGeometry(430,10*i+30+30*i+80,30,40);
         traitfraction[i]->setFont(QFont("PncilPete FONT", 14));
     }
 

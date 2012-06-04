@@ -123,7 +123,7 @@ Boite2::Boite2(QMainWindow *p,int e1,int e2)
     for(int i=0;i<5;i++){
 
         calcul[i+10] = new  QLabel(QString::number(etude2*taVariable[i]),this);
-        calcul[i+10]->setGeometry(547, 50*i+34+40+30*i+80,50,20);
+        calcul[i+10]->setGeometry(547, 50*i+34+40+30*i+80,100,20);
         calcul[i+10]->setFont(QFont("PncilPete FONT", 14));
     }
 

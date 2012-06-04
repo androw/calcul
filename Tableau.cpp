@@ -69,19 +69,19 @@ Tableau::Tableau(QMainWindow *p)
 
 
     //BOUTON VALIDATION
+
+    m_next = new QPushButton("Suivant", this);
+    m_next->setToolTip("Vï¿½rifier bien votre rï¿½sultat");
+    m_next->setFont(QFont("encilPete FONT", 14));
+    m_next->setCursor(Qt::PointingHandCursor);
+    m_next->move(340, 450+50);
+
     m_bouton = new QPushButton("Valider", this);
     m_bouton->setToolTip("Vérifier bien votre résultat");
     m_bouton->setFont(QFont("encilPete FONT", 14));
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(140+60, 450+110);
 
-    m_next = new QPushButton("Suivant", this);
-    m_next->setToolTip("Vérifier bien votre résultat");
-    m_next->setFont(QFont("encilPete FONT", 14));
-    m_next->setCursor(Qt::PointingHandCursor);
-    m_next->move(340, 450+50);
-    
-    
     m_help = new QPushButton("?", this);
     m_help->setToolTip("Aide  ");
     m_help->setFont(QFont("encilPete FONT", 14));
