@@ -17,7 +17,7 @@
 
 #include "Tableau.h"
 
-Tableau::Tableau(QMainWindow *p)
+Tableau::Tableau(QMainWindow *p, bool reel)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -50,6 +50,11 @@ Tableau::Tableau(QMainWindow *p)
     srand(time(NULL));
 
     taVariable = rand()%90+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable += decim/10 + decim2/100;
+    }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
     }
@@ -220,7 +225,7 @@ bool Tableau::verif() {
     if (suiv == 9){
         currenterr = 0;
         for(int i=0; i<10;i++) {
-            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+            if(reponse[i]->text().toFloat()- (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat()- (i+1)*taVariable <= -0.0001) {
                 verifDec((i+1)*taVariable, reponse[i]->text().toFloat());
                 reponse[i]->setStyleSheet("border-style: outset;\
                                           background-color: #FF6347;\
@@ -230,14 +235,14 @@ bool Tableau::verif() {
                 erreur++;
 
             }
-            if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+            if(reponse[i]->text().toFloat()- (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat()- (i+1)*taVariable > -0.0001) {
                 reponse[i]->setStyleSheet("border-style: outset;\
                                           border-width: 2px;\
                                           border-radius: 10px;");
             }
         }
         for(int i=0; i<10;i++) {
-            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+            if(reponse[i]->text().toFloat()- (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat()- (i+1)*taVariable <= -0.0001) {
                 return false;
             }
         }
@@ -300,7 +305,7 @@ void Tableau::menu() {
 
 void Tableau::suivant() {
     currenterr = 0;
-    if (reponse[suiva[suiv]]->text().toFloat() != (suiva[suiv]+1)*taVariable) {
+    if (reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable >= 0.001 || reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable <= -0.001) {
         verifDec((suiva[suiv]+1)*taVariable, reponse[suiva[suiv]]->text().toFloat());
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
                                             background-color: #FF6347;\
@@ -311,7 +316,7 @@ void Tableau::suivant() {
         erreur++;
         progress->setValue(erreur*20);
         
-    }else if (reponse[suiva[suiv]]->text().toFloat() == (suiva[suiv]+1)*taVariable &&  suiv < 9) {
+    }else if (reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable < 0.001 && reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable > -0.001) {
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
                                             border-width: 2px;\
                                             border-radius: 10px;");

@@ -62,7 +62,7 @@ protected:
     void menu();
 
 public :
-        Table(QMainWindow *p);
+        Table(QMainWindow *p,bool reel);
 ~Table();
 bool verif();
 void evaluation(float nombre);

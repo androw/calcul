@@ -17,7 +17,7 @@
 
 #include "Deduction.h"
 
-Deduction::Deduction(QMainWindow *p)
+Deduction::Deduction(QMainWindow *p,bool reel)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -46,6 +46,11 @@ Deduction::Deduction(QMainWindow *p)
 
     srand(time(NULL));
     taVariable = rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable += decim/10 + decim2/100;
+    }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
     }
@@ -150,7 +155,7 @@ void Deduction::consigne() {
 bool Deduction::verif() {
     currenterr = 0;
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       background-color: #FF6347;\
                                       border-width: 2px;\
@@ -160,7 +165,7 @@ bool Deduction::verif() {
             progress->setValue(erreur*20);
 
         }
-        if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat() - (i+1)*taVariable > -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
@@ -168,7 +173,7 @@ bool Deduction::verif() {
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
@@ -178,7 +183,7 @@ bool Deduction::verif() {
             progress->setValue(erreur*20);
 
         }
-        if(reponse[i+10]->text().toFloat() == (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 < 0.0001 && reponse[i+10]->text().toFloat() - (i+1)*taVariable2 > -0.0001) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
@@ -186,7 +191,7 @@ bool Deduction::verif() {
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
@@ -195,7 +200,7 @@ bool Deduction::verif() {
             erreur++;
 
         }
-        if(reponse[i+20]->text().toFloat() == (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 < 0.0001 && reponse[i+20]->text().toFloat() - (i+1)*taVariable3 > -0.0001) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
@@ -203,19 +208,19 @@ bool Deduction::verif() {
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             return false;
 
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
             return false;
 
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
             return false;
 
         }

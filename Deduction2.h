@@ -1,4 +1,4 @@
-//      Deduction.h
+//      Deduction2.h
 //
 //      Copyright 2011 http://redmine.androw.eu/projects/tipe1112/
 //
@@ -14,8 +14,9 @@
 //
 //      You should have received a copy of the GNU General Public License
 //      along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef Boite2_H
-#define Boite2_H
+
+#ifndef DEDUCTION2_H
+#define DEDUCTION2_H
 
 #include <QApplication>
 #include <QWidget>
@@ -32,17 +33,17 @@
 
 #include "Exercice.h"
 
-class Boite2 : public Exercice {
+class Deduction2 : public Exercice {
     Q_OBJECT
 
 protected:
-    double etude1;
-    double etude2;
     QPushButton *m_bouton;
     QPushButton *m_menu;
     QPushButton *m_consigne;
-    QLineEdit * reponse[10];
-    float taVariable[5];
+    QLineEdit * reponse[30];
+    float taVariable;
+    float taVariable2;
+    float taVariable3;
     int SECONDES;
     int MINUTES;
     QTimer *timerA;
@@ -51,7 +52,6 @@ protected:
     int currenterr;
     QLabel *comment;
     QMainWindow *parent;
-    QComboBox *signe[5];
 
 public slots:
     void message();
@@ -60,12 +60,9 @@ public slots:
     void menu();
 
 public :
-    Boite2(QMainWindow *p,int e1,int e2);
-    ~Boite2();
-    bool verif(int etude1,int etude2);
-    bool repet(int);
-    bool verifsigne(int);
+    Deduction2(QMainWindow *p);
+    ~Deduction2();
+    bool verif();
     void evaluation(float nombre);
 };
-
-#endif // Boite2_H
+#endif // DEDUCTION2_H

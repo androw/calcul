@@ -43,9 +43,12 @@ Menu::Menu()
 
 
     serie = new QPushButton("Série", this);
+    serie2 = new QPushButton("Série version réels", this);
     tablem = new QPushButton("Table de \n multiplication", this);
+    tablem2 = new QPushButton("Table de \n multiplication version réels", this);
     grad = new QPushButton("Graduation \n de droite", this);
     dedu = new QPushButton("Déduction", this);
+    dedu2 = new QPushButton("Déduction version réels", this);
     equation = new QPushButton("Résolution d'équation", this);
     
     m_slider = new QSlider(Qt::Horizontal, this);
@@ -65,9 +68,12 @@ Menu::Menu()
     boite11->setFont(QFont("encilPete FONT", 20));
     boite12->setFont(QFont("encilPete FONT", 20));
     serie->setFont(QFont("encilPete FONT", 20));
+    serie2->setFont(QFont("encilPete FONT", 20));
     tablem->setFont(QFont("encilPete FONT", 20));
+    tablem2->setFont(QFont("encilPete FONT", 20));
     grad->setFont(QFont("encilPete FONT", 20));
     dedu->setFont(QFont("encilPete FONT", 20));
+    dedu2->setFont(QFont("encilPete FONT", 20));
     equation->setFont(QFont("encilPete FONT", 20));
 
     boite1->setCursor(Qt::PointingHandCursor);
@@ -83,16 +89,22 @@ Menu::Menu()
     boite11->setCursor(Qt::PointingHandCursor);
     boite12->setCursor(Qt::PointingHandCursor);
     serie->setCursor(Qt::PointingHandCursor);
+    serie2->setCursor(Qt::PointingHandCursor);
     tablem->setCursor(Qt::PointingHandCursor);
+    tablem2->setCursor(Qt::PointingHandCursor);
     grad->setCursor(Qt::PointingHandCursor);
     dedu->setCursor(Qt::PointingHandCursor);
+    dedu2->setCursor(Qt::PointingHandCursor);
     equation->setCursor(Qt::PointingHandCursor);
 
     equation->setGeometry(0, 0, 0, 0);
     serie->setGeometry(0, 0, 0, 0);
+    serie2->setGeometry(0, 0, 0, 0);
     tablem->setGeometry(0, 0, 0, 0);
+    tablem2->setGeometry(0, 0, 0, 0);
     grad->setGeometry(0, 0, 0, 0);
     dedu->setGeometry(0, 0, 0, 0);
+    dedu2->setGeometry(0, 0, 0, 0);
 
 
     QPropertyAnimation *animation1 = new QPropertyAnimation (boite1, "geometry");
@@ -184,6 +196,11 @@ Menu::Menu()
     tableau->setCursor(Qt::PointingHandCursor);
     tableau->setGeometry(0, 0, 0, 0);
 
+    tableau2 = new QPushButton("Tableau version réels", this);
+    tableau2->setFont(QFont("encilPete FONT", 20));
+    tableau2->setCursor(Qt::PointingHandCursor);
+    tableau2->setGeometry(0, 0, 0, 0);
+
 
 
 
@@ -217,9 +234,13 @@ Menu::Menu()
     QObject::connect(boite11, SIGNAL(clicked()), this, SLOT(aboite11()));
     QObject::connect(boite12, SIGNAL(clicked()), this, SLOT(aboite12()));
     QObject::connect(serie, SIGNAL(clicked()), this, SLOT(aserie()));
+    QObject::connect(serie2, SIGNAL(clicked()), this, SLOT(aserie2()));
     QObject::connect(tablem, SIGNAL(clicked()), this, SLOT(atable()));
+    QObject::connect(tablem2, SIGNAL(clicked()), this, SLOT(atable2()));
     QObject::connect(tableau, SIGNAL(clicked()), this, SLOT(atableau()));
+    QObject::connect(tableau2, SIGNAL(clicked()), this, SLOT(atableau2()));
     QObject::connect(dedu, SIGNAL(clicked()), this, SLOT(adedu()));
+    QObject::connect(dedu2, SIGNAL(clicked()), this, SLOT(adedu2()));
     QObject::connect(grad, SIGNAL(clicked()), this, SLOT(agrad()));
     QObject::connect(equation, SIGNAL(clicked()), this, SLOT(aequation()));
     QObject::connect(Facile, SIGNAL(clicked()), this, SLOT(facil()));
@@ -277,6 +298,13 @@ void Menu::facil() {
     animation2->setEasingCurve(QEasingCurve::OutBack);
     animation2->start();
 
+    animation2 = new QPropertyAnimation (serie2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(120, 120, 0, 0));
+    animation2->setEndValue(QRect(0, 0, 0, 0));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
     animation2 = new QPropertyAnimation (tablem, "geometry");
     animation2->setDuration(500);
     animation2->setStartValue(QRect(120, 120, 0, 0));
@@ -284,7 +312,21 @@ void Menu::facil() {
     animation2->setEasingCurve(QEasingCurve::OutBack);
     animation2->start();
 
+    animation2 = new QPropertyAnimation (tablem2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(120, 120, 0, 0));
+    animation2->setEndValue(QRect(0, 0, 0, 0));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
     animation2 = new QPropertyAnimation (tableau, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(120, 120, 0, 0));
+    animation2->setEndValue(QRect(0, 0, 0, 0));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
+    animation2 = new QPropertyAnimation (tableau2, "geometry");
     animation2->setDuration(500);
     animation2->setStartValue(QRect(120, 120, 0, 0));
     animation2->setEndValue(QRect(0, 0, 0, 0));
@@ -299,6 +341,13 @@ void Menu::facil() {
     animation2->start();
 
     animation2 = new QPropertyAnimation (dedu, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(120, 120, 0, 0));
+    animation2->setEndValue(QRect(0, 0, 0, 0));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
+    animation2 = new QPropertyAnimation (dedu2, "geometry");
     animation2->setDuration(500);
     animation2->setStartValue(QRect(120, 120, 0, 0));
     animation2->setEndValue(QRect(0, 0, 0, 0));
@@ -407,6 +456,13 @@ void Menu::normal() {
     animation1->setEasingCurve(QEasingCurve::OutBack);
     animation1->start();
 
+    animation1 = new QPropertyAnimation (dedu2, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(120, 120, 0, 0));
+    animation1->setEndValue(QRect(0, 0, 0, 0));
+    animation1->setEasingCurve(QEasingCurve::OutBack);
+    animation1->start();
+
     animation1 = new QPropertyAnimation (m_slider, "geometry");
     animation1->setDuration(500);
     animation1->setStartValue(QRect(120, 120, 0, 0));
@@ -415,6 +471,13 @@ void Menu::normal() {
     animation1->start();
 
     animation1 = new QPropertyAnimation (tableau, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(120, 120, 0, 0));
+    animation1->setEndValue(QRect(0, 0, 0, 0));
+    animation1->setEasingCurve(QEasingCurve::OutBack);
+    animation1->start();
+
+    animation1 = new QPropertyAnimation (tableau2, "geometry");
     animation1->setDuration(500);
     animation1->setStartValue(QRect(120, 120, 0, 0));
     animation1->setEndValue(QRect(0, 0, 0, 0));
@@ -519,10 +582,24 @@ void Menu::normal() {
     animation2->setEasingCurve(QEasingCurve::OutBack);
     animation2->start();
 
+    animation2 = new QPropertyAnimation (serie2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(320, 340, 100, 100));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
     animation2 = new QPropertyAnimation (tablem, "geometry");
     animation2->setDuration(500);
     animation2->setStartValue(QRect(0, 0, 100, 30));
     animation2->setEndValue(QRect(530, 200, 100, 100));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
+    animation2 = new QPropertyAnimation (tablem2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(530, 340, 100, 100));
     animation2->setEasingCurve(QEasingCurve::OutBack);
     animation2->start();
 }
@@ -539,6 +616,13 @@ void Menu::difficil() {
     animation2->setDuration(500);
     animation2->setStartValue(QRect(0, 0, 100, 30));
     animation2->setEndValue(QRect(320, 200, 100, 100));
+    animation2->setEasingCurve(QEasingCurve::OutBack);
+    animation2->start();
+
+    animation2 = new QPropertyAnimation (dedu2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(320, 340, 100, 100));
     animation2->setEasingCurve(QEasingCurve::OutBack);
     animation2->start();
 
@@ -565,6 +649,13 @@ void Menu::difficil() {
     animation2->setEasingCurve(QEasingCurve:: OutBack);
     animation2->start();
 
+    animation2 = new QPropertyAnimation (tableau2, "geometry");
+    animation2->setDuration(500);
+    animation2->setStartValue(QRect(0, 0, 100, 30));
+    animation2->setEndValue(QRect(530, 340, 100, 100));
+    animation2->setEasingCurve(QEasingCurve:: OutBack);
+    animation2->start();
+
     animation1 = new QPropertyAnimation (serie, "geometry");
     animation1->setDuration(500);
     animation1->setStartValue(QRect(120, 120, 0, 0));
@@ -572,7 +663,21 @@ void Menu::difficil() {
     animation1->setEasingCurve(QEasingCurve::OutBack);
     animation1->start();
 
+    animation1 = new QPropertyAnimation (serie2, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(120, 120, 0, 0));
+    animation1->setEndValue(QRect(0, 0, 0, 0));
+    animation1->setEasingCurve(QEasingCurve::OutBack);
+    animation1->start();
+
     animation1 = new QPropertyAnimation (tablem, "geometry");
+    animation1->setDuration(500);
+    animation1->setStartValue(QRect(120, 120, 0, 0));
+    animation1->setEndValue(QRect(0, 0, 0, 0));
+    animation1->setEasingCurve(QEasingCurve::OutBack);
+    animation1->start();
+
+    animation1 = new QPropertyAnimation (tablem2, "geometry");
     animation1->setDuration(500);
     animation1->setStartValue(QRect(120, 120, 0, 0));
     animation1->setEndValue(QRect(0, 0, 0, 0));
@@ -667,13 +772,25 @@ void Menu::difficil() {
 
 
 void Menu::aserie() {
-    ExerciceSerie *fenetre = new ExerciceSerie(this);
+    ExerciceSerie *fenetre = new ExerciceSerie(this,false);
+    //hide();
+    fenetre->exec();
+}
+
+void Menu::aserie2() {
+    ExerciceSerie *fenetre = new ExerciceSerie(this,true);
     //hide();
     fenetre->exec();
 }
 
 void Menu::atableau() {
-    Tableau *fenetre = new Tableau(this);
+    Tableau *fenetre = new Tableau(this,false);
+    //hide();
+    fenetre->exec();
+}
+
+void Menu::atableau2() {
+    Tableau *fenetre = new Tableau(this,true);
     //hide();
     fenetre->exec();
 }
@@ -751,13 +868,25 @@ void Menu::aboite12() {
 }
 
 void Menu::atable() {
-    Table *fenetre = new Table(this);
+    Table *fenetre = new Table(this,false);
+    //hide();
+    fenetre->exec();
+}
+
+void Menu::atable2() {
+    Table *fenetre = new Table(this,true);
     //hide();
     fenetre->exec();
 }
 
 void Menu::adedu() {
-    Deduction *fenetre = new Deduction(this);
+    Deduction *fenetre = new Deduction(this,false);
+    //hide();
+    fenetre->exec();
+}
+
+void Menu::adedu2() {
+    Deduction *fenetre = new Deduction(this,true);
     //hide();
     fenetre->exec();
 }

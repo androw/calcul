@@ -17,7 +17,7 @@
 
 #include "Table.h"
 
-Table::Table(QMainWindow *p)
+Table::Table(QMainWindow *p,bool reel)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -46,27 +46,52 @@ Table::Table(QMainWindow *p)
 
     srand(time(NULL));
     taVariable = rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable += decim/10 + decim2/100;
+    }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
     }
     taVariable2= rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable2 += decim/10 + decim2/100;
+    }
     while(taVariable2 == 1) {
         taVariable2 = rand()%10+1;
     }
     while(taVariable2 == taVariable)
     {
         taVariable2= rand()%10+1;
+        if (reel) {
+            float decim = rand()%9+1;
+            float decim2 = rand()%9+1;
+            taVariable2 += decim/10 + decim2/100;
+        }
         while(taVariable2 == 1) {
             taVariable2 = rand()%10+1;
         }
     }
     taVariable3= rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable3 += decim/10 + decim2/100;
+    }
     while(taVariable3 == 1) {
         taVariable3 = rand()%10+1;
     }
     while((taVariable3 == taVariable) || (taVariable3 == taVariable2 ))
     {
         taVariable3= rand()%10+1;
+        if (reel) {
+            float decim = rand()%9+1;
+            float decim2 = rand()%9+1;
+            taVariable3 += decim/10 + decim2/100;
+        }
         while(taVariable3 == 1) {
             taVariable3 = rand()%10+1;
         }
@@ -153,7 +178,7 @@ void Table::consigne() {
 bool Table::verif() {
     currenterr = 0;
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       background-color: #FF6347;\
                                       border-width: 2px;\
@@ -162,14 +187,14 @@ bool Table::verif() {
             erreur++;
             progress->setValue(erreur*20);
         }
-        if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat() - (i+1)*taVariable > -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
@@ -178,14 +203,14 @@ bool Table::verif() {
             erreur++;
             progress->setValue(erreur*20);
         }
-        if(reponse[i+10]->text().toFloat() == (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 < 0.0001 && reponse[i+10]->text().toFloat() - (i+1)*taVariable2 > -0.0001) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
@@ -194,24 +219,24 @@ bool Table::verif() {
             erreur++;
             progress->setValue(erreur*20);
         }
-        if(reponse[i+20]->text().toFloat() == (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 < 0.0001 && reponse[i+20]->text().toFloat() - (i+1)*taVariable3 > -0.0001) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             return false;
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
             return false;
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
             return false;
         }
     }

@@ -17,7 +17,7 @@
 
 #include "ExerciceSerie.h"
 
-ExerciceSerie::ExerciceSerie(QMainWindow *p)
+ExerciceSerie::ExerciceSerie(QMainWindow *p, bool reel)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -45,6 +45,11 @@ ExerciceSerie::ExerciceSerie(QMainWindow *p)
 
     srand(time(NULL));
     taVariable = rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable += decim/10 + decim2/100;
+    }
 
     //BOUTON VALIDATION
 
@@ -135,7 +140,7 @@ void ExerciceSerie::consigne() {
 bool ExerciceSerie::verif() {
     currenterr = 0;
     for(int i=0; i<30;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       background-color: #FF6347;\
                                       border-width: 2px;\
@@ -144,14 +149,14 @@ bool ExerciceSerie::verif() {
             erreur++;
             progress->setValue(erreur*20);
         }
-        if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat() - (i+1)*taVariable > -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
         }
     }
     for(int i=0; i<30;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             return false;
         }
     }
