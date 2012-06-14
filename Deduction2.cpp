@@ -40,9 +40,6 @@ Deduction2::Deduction2(QMainWindow *p)
     label->setStyleSheet("color:White;");
     label->setGeometry(500+200,30, 640, 50);
 
-    progress = new QProgressBar(this);
-    progress->setValue(erreur*10);
-    progress->setGeometry(280+60, 415+110,200,30);
 
     srand(time(NULL));
     taVariable = rand()%10+1;
@@ -161,7 +158,6 @@ bool Deduction2::verif() {
                                       border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
 
         }
         if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
@@ -179,7 +175,6 @@ bool Deduction2::verif() {
                                          border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
 
         }
         if(reponse[i+10]->text().toFloat() == (i+1)*taVariable2) {
@@ -236,8 +231,8 @@ void Deduction2::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-        if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
-        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
+        if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
+        else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
     }
 }
 
