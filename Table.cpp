@@ -45,8 +45,7 @@ Table::Table(QMainWindow *p,bool reel)
     taVariable = rand()%10+1;
     if (reel) {
         float decim = rand()%9+1;
-        float decim2 = rand()%9+1;
-        taVariable += decim/10 + decim2/100;
+        taVariable += decim/10;
     }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
@@ -54,8 +53,7 @@ Table::Table(QMainWindow *p,bool reel)
     taVariable2= rand()%10+1;
     if (reel) {
         float decim = rand()%9+1;
-        float decim2 = rand()%9+1;
-        taVariable2 += decim/10 + decim2/100;
+        taVariable2 += decim/10;
     }
     while(taVariable2 == 1) {
         taVariable2 = rand()%10+1;
@@ -65,8 +63,7 @@ Table::Table(QMainWindow *p,bool reel)
         taVariable2= rand()%10+1;
         if (reel) {
             float decim = rand()%9+1;
-            float decim2 = rand()%9+1;
-            taVariable2 += decim/10 + decim2/100;
+            taVariable2 += decim/10;
         }
         while(taVariable2 == 1) {
             taVariable2 = rand()%10+1;
@@ -75,8 +72,7 @@ Table::Table(QMainWindow *p,bool reel)
     taVariable3= rand()%10+1;
     if (reel) {
         float decim = rand()%9+1;
-        float decim2 = rand()%9+1;
-        taVariable3 += decim/10 + decim2/100;
+        taVariable3 += decim/10;
     }
     while(taVariable3 == 1) {
         taVariable3 = rand()%10+1;
@@ -86,8 +82,7 @@ Table::Table(QMainWindow *p,bool reel)
         taVariable3= rand()%10+1;
         if (reel) {
             float decim = rand()%9+1;
-            float decim2 = rand()%9+1;
-            taVariable3 += decim/10 + decim2/100;
+            taVariable3 += decim/10;
         }
         while(taVariable3 == 1) {
             taVariable3 = rand()%10+1;

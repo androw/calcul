@@ -44,8 +44,7 @@ Deduction::Deduction(QMainWindow *p,bool reel)
     taVariable = rand()%10+1;
     if (reel) {
         float decim = rand()%9+1;
-        float decim2 = rand()%9+1;
-        taVariable += decim/10 + decim2/100;
+        taVariable += decim/10;
     }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
