@@ -60,7 +60,7 @@ public slots:
     void menu();
 
 public :
-    Deduction(QMainWindow *p, bool reel);
+    Deduction(QMainWindow *p);
     ~Deduction();
     bool verif();
     void evaluation(float nombre);

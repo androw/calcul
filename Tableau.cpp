@@ -17,7 +17,7 @@
 
 #include "Tableau.h"
 
-Tableau::Tableau(QMainWindow *p, bool reel)
+Tableau::Tableau(QMainWindow *p)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -43,14 +43,13 @@ Tableau::Tableau(QMainWindow *p, bool reel)
     label->setStyleSheet("color:White;");
     label->setGeometry(500+200,30, 640, 50);
 
+    progress = new QProgressBar(this);
+    progress->setValue(erreur*10);
+    progress->setGeometry(280+60, 350+110,200,30);
+
     srand(time(NULL));
 
     taVariable = rand()%90+1;
-    if (reel) {
-        float decim = rand()%9+1;
-        float decim2 = rand()%9+1;
-        taVariable += decim/10 + decim2/100;
-    }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
     }
@@ -221,7 +220,7 @@ bool Tableau::verif() {
     if (suiv == 9){
         currenterr = 0;
         for(int i=0; i<10;i++) {
-            if(reponse[i]->text().toFloat()- (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat()- (i+1)*taVariable <= -0.0001) {
+            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
                 verifDec((i+1)*taVariable, reponse[i]->text().toFloat());
                 reponse[i]->setStyleSheet("border-style: outset;\
                                           background-color: #FF6347;\
@@ -231,14 +230,14 @@ bool Tableau::verif() {
                 erreur++;
 
             }
-            if(reponse[i]->text().toFloat()- (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat()- (i+1)*taVariable > -0.0001) {
+            if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
                 reponse[i]->setStyleSheet("border-style: outset;\
                                           border-width: 2px;\
                                           border-radius: 10px;");
             }
         }
         for(int i=0; i<10;i++) {
-            if(reponse[i]->text().toFloat()- (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat()- (i+1)*taVariable <= -0.0001) {
+            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
                 return false;
             }
         }
@@ -256,8 +255,8 @@ void Tableau::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-        if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
-        else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
+	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
+        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
     }
 }
 
@@ -301,7 +300,7 @@ void Tableau::menu() {
 
 void Tableau::suivant() {
     currenterr = 0;
-    if (reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable >= 0.001 || reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable <= -0.001) {
+    if (reponse[suiva[suiv]]->text().toFloat() != (suiva[suiv]+1)*taVariable) {
         verifDec((suiva[suiv]+1)*taVariable, reponse[suiva[suiv]]->text().toFloat());
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
                                             background-color: #FF6347;\
@@ -310,8 +309,9 @@ void Tableau::suivant() {
         currenterr++;
         
         erreur++;
+        progress->setValue(erreur*20);
         
-    }else if (reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable < 0.001 && reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable > -0.001) {
+    }else if (reponse[suiva[suiv]]->text().toFloat() == (suiva[suiv]+1)*taVariable &&  suiv < 9) {
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
                                             border-width: 2px;\
                                             border-radius: 10px;");

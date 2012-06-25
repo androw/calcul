@@ -41,6 +41,12 @@ Equation::Equation(QMainWindow *p)
     label->setGeometry(500+200,30, 640, 50);
 
 
+    progress = new QProgressBar(this);
+    progress->setValue(erreur*10);
+    progress->setGeometry(280+60, 415+110,200,30);
+
+
+
     srand(time(NULL));
     for(int i=0;i<10;i++) {
         taVariable = rand()%10+1;
@@ -158,6 +164,7 @@ bool Equation::verif() {
                                            border-radius: 10px;");
             currenterr++;
             erreur++;
+            progress->setValue(erreur*20);
 
         }
         if(denominateur[i]->text().toFloat() != 0 && abs((numerateur[i]->text().toFloat() / denominateur[i]->text().toFloat() - (m[i].getResultat() - m[i].getConstante())/m[i].getCoefficient())) < 0.00001) {
@@ -191,8 +198,8 @@ void Equation::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-        if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
-                                                                      else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
+	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
+        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
     }
 }
 

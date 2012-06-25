@@ -17,7 +17,7 @@
 
 #include "Deduction.h"
 
-Deduction::Deduction(QMainWindow *p,bool reel)
+Deduction::Deduction(QMainWindow *p)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -40,13 +40,12 @@ Deduction::Deduction(QMainWindow *p,bool reel)
     label->setStyleSheet("color:White;");
     label->setGeometry(500+200,30, 640, 50);
 
+    progress = new QProgressBar(this);
+    progress->setValue(erreur*10);
+    progress->setGeometry(280+60, 415+110,200,30);
+
     srand(time(NULL));
     taVariable = rand()%10+1;
-    if (reel) {
-        float decim = rand()%9+1;
-        float decim2 = rand()%9+1;
-        taVariable += decim/10 + decim2/100;
-    }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
     }
@@ -151,16 +150,17 @@ void Deduction::consigne() {
 bool Deduction::verif() {
     currenterr = 0;
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
+        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       background-color: #FF6347;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
             currenterr++;
             erreur++;
+            progress->setValue(erreur*20);
 
         }
-        if(reponse[i]->text().toFloat() - (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat() - (i+1)*taVariable > -0.0001) {
+        if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
@@ -168,16 +168,17 @@ bool Deduction::verif() {
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
+        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
             currenterr++;
             erreur++;
+            progress->setValue(erreur*20);
 
         }
-        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 < 0.0001 && reponse[i+10]->text().toFloat() - (i+1)*taVariable2 > -0.0001) {
+        if(reponse[i+10]->text().toFloat() == (i+1)*taVariable2) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
@@ -185,7 +186,7 @@ bool Deduction::verif() {
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
+        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
@@ -194,7 +195,7 @@ bool Deduction::verif() {
             erreur++;
 
         }
-        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 < 0.0001 && reponse[i+20]->text().toFloat() - (i+1)*taVariable3 > -0.0001) {
+        if(reponse[i+20]->text().toFloat() == (i+1)*taVariable3) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
@@ -202,19 +203,19 @@ bool Deduction::verif() {
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
+        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
             return false;
 
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
+        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
             return false;
 
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
+        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
             return false;
 
         }
@@ -231,8 +232,8 @@ void Deduction::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-        if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
-        else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
+	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
+        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
     }
 }
 

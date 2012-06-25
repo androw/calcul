@@ -60,16 +60,12 @@ protected:
     QPushButton *boite11;
     QPushButton *boite12;
     QPushButton *serie;
-    QPushButton *serie2;
     QPushButton *tablem;
-    QPushButton *tablem2;
     QPushButton *grad;
     QPushButton *dedu;
-    QPushButton *dedu2;
     QPushButton *equation;
     QPushButton *devFac;
     QPushButton *tableau;
-    QPushButton *tableau2;
     QPropertyAnimation *animation1;
     QPropertyAnimation *animation2;
     QLineEdit *prenom;
@@ -94,15 +90,11 @@ protected:
     void aboite11();
     void aboite12();
     void aserie();
-    void aserie2();
     void atable();
-    void atable2();
     void adedu();
-    void adedu2();
     void agrad();
     void aequation();
     void atableau();
-    void atableau2();
     void deplacer();
 signals:
 

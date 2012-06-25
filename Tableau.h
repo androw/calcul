@@ -53,7 +53,7 @@ protected:
     void menu();
 
 public :
-        Tableau(QMainWindow *p,bool reel);
+        Tableau(QMainWindow *p);
 ~Tableau();
 bool verif();
 void evaluation(float nombre);
