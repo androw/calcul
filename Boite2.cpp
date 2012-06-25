@@ -42,9 +42,6 @@ Boite2::Boite2(QMainWindow *p,int e1,int e2)
     label->setStyleSheet("color:White;");
     label->setGeometry(500+200,30, 640, 50);
 
-    progress = new QProgressBar(this);
-    progress->setValue(erreur*10);
-    progress->setGeometry(280+60, 400+110,200,30);
 
     srand(time(NULL));
     for(int i = 0;i<5;i++) {
@@ -64,7 +61,7 @@ Boite2::Boite2(QMainWindow *p,int e1,int e2)
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(140+60, 450+110);
 
-    m_menu = new QPushButton("Menu", this);
+    m_menu = new QPushButton("Retour", this);
     m_menu->setToolTip("Retour au Menu");
     m_menu->setFont(QFont("encilPete FONT", 14));
     m_menu->setCursor(Qt::PointingHandCursor);
@@ -169,7 +166,6 @@ bool Boite2::verif(int etude1,int etude2) {
                                       border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
 
         }
         if(reponse[i]->text().toFloat() == etude1*taVariable[i] ) {
@@ -187,7 +183,6 @@ bool Boite2::verif(int etude1,int etude2) {
                                         border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
 
         }
         if((reponse[i+5]->text().toFloat() == etude2/etude1 && etude2 != 9 && etude2 != 3 && etude2 !=5 ) && (verifsigne(i))) {
@@ -229,8 +224,8 @@ void Boite2::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
-        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
+        if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
+        else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
     }
 }
 

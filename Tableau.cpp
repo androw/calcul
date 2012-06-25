@@ -17,7 +17,7 @@
 
 #include "Tableau.h"
 
-Tableau::Tableau(QMainWindow *p)
+Tableau::Tableau(QMainWindow *p, bool reel)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -43,13 +43,14 @@ Tableau::Tableau(QMainWindow *p)
     label->setStyleSheet("color:White;");
     label->setGeometry(500+200,30, 640, 50);
 
-    progress = new QProgressBar(this);
-    progress->setValue(erreur*10);
-    progress->setGeometry(280+60, 350+110,200,30);
-
     srand(time(NULL));
 
     taVariable = rand()%90+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable += decim/10;
+    }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
     }
@@ -96,7 +97,7 @@ Tableau::Tableau(QMainWindow *p)
                           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\
                                                             stop: 0 #FF0000, stop: 1 #F5F5F5);");
 
-    m_menu = new QPushButton("Menu", this);
+    m_menu = new QPushButton("Retour", this);
     m_menu->setToolTip("Retour au Menu");
     m_menu->setFont(QFont("encilPete FONT", 14));
     m_menu->setCursor(Qt::PointingHandCursor);
@@ -217,10 +218,10 @@ void Tableau::aide() {
 }
 
 bool Tableau::verif() {
-    if (suiv == 9){
+    if (suiv  == 10){
         currenterr = 0;
         for(int i=0; i<10;i++) {
-            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+            if(reponse[i]->text().toFloat()- (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat()- (i+1)*taVariable <= -0.0001) {
                 verifDec((i+1)*taVariable, reponse[i]->text().toFloat());
                 reponse[i]->setStyleSheet("border-style: outset;\
                                           background-color: #FF6347;\
@@ -230,14 +231,14 @@ bool Tableau::verif() {
                 erreur++;
 
             }
-            if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+            if(reponse[i]->text().toFloat()- (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat()- (i+1)*taVariable > -0.0001) {
                 reponse[i]->setStyleSheet("border-style: outset;\
                                           border-width: 2px;\
                                           border-radius: 10px;");
             }
         }
         for(int i=0; i<10;i++) {
-            if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+            if(reponse[i]->text().toFloat()- (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat()- (i+1)*taVariable <= -0.0001) {
                 return false;
             }
         }
@@ -255,8 +256,8 @@ void Tableau::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
-        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
+        if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
+        else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
     }
 }
 
@@ -300,7 +301,7 @@ void Tableau::menu() {
 
 void Tableau::suivant() {
     currenterr = 0;
-    if (reponse[suiva[suiv]]->text().toFloat() != (suiva[suiv]+1)*taVariable) {
+    if (reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable >= 0.001 || reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable <= -0.001) {
         verifDec((suiva[suiv]+1)*taVariable, reponse[suiva[suiv]]->text().toFloat());
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
                                             background-color: #FF6347;\
@@ -309,21 +310,22 @@ void Tableau::suivant() {
         currenterr++;
         
         erreur++;
-        progress->setValue(erreur*20);
         
-    }else if (reponse[suiva[suiv]]->text().toFloat() == (suiva[suiv]+1)*taVariable &&  suiv < 9) {
+    }else if (reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable < 0.001 && reponse[suiva[suiv]]->text().toFloat() - (suiva[suiv]+1)*taVariable > -0.001) {
         reponse[suiva[suiv]]->setStyleSheet("border-style: outset;\
                                             border-width: 2px;\
                                             border-radius: 10px;");
         suiv++;
-        
+        if (suiv == 10) {
+	m_next->setGeometry(0,0,0,0);
+	} else {
         QPropertyAnimation *animation3 = new QPropertyAnimation (reponse[suiva[suiv]], "geometry");
         animation3->setDuration(500);
         animation3->setStartValue(QRect(50+75*suiva[suiv-1],320,50,20));
         animation3->setEndValue(QRect(50+75*suiva[suiv],320,50,20));
         animation3->setEasingCurve(QEasingCurve::OutExpo);
         animation3->start();
-        
+        }
         //reponse[suiva[suiv]]->setGeometry(50+75*suiva[suiv],320,50,20);
         
     }

@@ -17,7 +17,7 @@
 
 #include "Table.h"
 
-Table::Table(QMainWindow *p)
+Table::Table(QMainWindow *p,bool reel)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -40,33 +40,55 @@ Table::Table(QMainWindow *p)
     label->setStyleSheet("color:White;");
     label->setGeometry(500+200,30, 640, 50);
 
-    progress = new QProgressBar(this);
-    progress->setValue(erreur*10);
-    progress->setGeometry(280+60, 415+110,200,30);
 
     srand(time(NULL));
     taVariable = rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable += decim/10 + decim2/100;
+    }
     while(taVariable == 1) {
         taVariable = rand()%10+1;
     }
     taVariable2= rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable2 += decim/10 + decim2/100;
+    }
     while(taVariable2 == 1) {
         taVariable2 = rand()%10+1;
     }
     while(taVariable2 == taVariable)
     {
         taVariable2= rand()%10+1;
+        if (reel) {
+            float decim = rand()%9+1;
+            float decim2 = rand()%9+1;
+            taVariable2 += decim/10 + decim2/100;
+        }
         while(taVariable2 == 1) {
             taVariable2 = rand()%10+1;
         }
     }
     taVariable3= rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable3 += decim/10 + decim2/100;
+    }
     while(taVariable3 == 1) {
         taVariable3 = rand()%10+1;
     }
     while((taVariable3 == taVariable) || (taVariable3 == taVariable2 ))
     {
         taVariable3= rand()%10+1;
+        if (reel) {
+            float decim = rand()%9+1;
+            float decim2 = rand()%9+1;
+            taVariable3 += decim/10 + decim2/100;
+        }
         while(taVariable3 == 1) {
             taVariable3 = rand()%10+1;
         }
@@ -79,7 +101,7 @@ Table::Table(QMainWindow *p)
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(140+60, 450+110);
 
-    m_menu = new QPushButton("Menu", this);
+    m_menu = new QPushButton("Retour", this);
     m_menu->setToolTip("Retour au Menu");
     m_menu->setFont(QFont("encilPete FONT", 14));
     m_menu->setCursor(Qt::PointingHandCursor);
@@ -153,65 +175,62 @@ void Table::consigne() {
 bool Table::verif() {
     currenterr = 0;
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       background-color: #FF6347;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
         }
-        if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat() - (i+1)*taVariable > -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
         }
-        if(reponse[i+10]->text().toFloat() == (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 < 0.0001 && reponse[i+10]->text().toFloat() - (i+1)*taVariable2 > -0.0001) {
             reponse[i+10]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          background-color: #FF6347;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
         }
-        if(reponse[i+20]->text().toFloat() == (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 < 0.0001 && reponse[i+20]->text().toFloat() - (i+1)*taVariable3 > -0.0001) {
             reponse[i+20]->setStyleSheet("border-style: outset;\
                                          border-width: 2px;\
                                          border-radius: 10px;");
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             return false;
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+10]->text().toFloat() != (i+1)*taVariable2) {
+        if(reponse[i+10]->text().toFloat() - (i+1)*taVariable2 >= 0.0001 || reponse[i+10]->text().toFloat() - (i+1)*taVariable2 <= -0.0001) {
             return false;
         }
     }
     for(int i=0; i<10;i++) {
-        if(reponse[i+20]->text().toFloat() != (i+1)*taVariable3) {
+        if(reponse[i+20]->text().toFloat() - (i+1)*taVariable3 >= 0.0001 || reponse[i+20]->text().toFloat() - (i+1)*taVariable3 <= -0.0001) {
             return false;
         }
     }
@@ -226,9 +245,8 @@ void Table::message(){
         }else {
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
-    }else {
-	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
-        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
+    }else {if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
+    else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
     }
 }
 

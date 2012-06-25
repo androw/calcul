@@ -64,7 +64,7 @@ Deduction2::Deduction2(QMainWindow *p)
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(140+60, 450+110);
 
-    m_menu = new QPushButton("Menu", this);
+    m_menu = new QPushButton("Retour", this);
     m_menu->setToolTip("Retour au Menu");
     m_menu->setFont(QFont("encilPete FONT", 14));
     m_menu->setCursor(Qt::PointingHandCursor);

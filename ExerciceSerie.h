@@ -59,7 +59,7 @@ public slots:
     void menu();
 
 public :
-        ExerciceSerie(QMainWindow *p);
+        ExerciceSerie(QMainWindow *p,bool reel);
 ~ExerciceSerie();
 bool verif();
 void evaluation(float nombre);

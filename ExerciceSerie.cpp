@@ -17,7 +17,7 @@
 
 #include "ExerciceSerie.h"
 
-ExerciceSerie::ExerciceSerie(QMainWindow *p)
+ExerciceSerie::ExerciceSerie(QMainWindow *p, bool reel)
 {
     parent = p;
     setFixedSize(800, 600);
@@ -39,12 +39,14 @@ ExerciceSerie::ExerciceSerie(QMainWindow *p)
     label->setFont(QFont("PencilPet", 14));
     label->setStyleSheet("color:White;");
     label->setGeometry(500+200,30, 640, 50);
-    progress = new QProgressBar(this);
-    progress->setValue(erreur*10);
-    progress->setGeometry(280+60, 415+110,200,30);
 
     srand(time(NULL));
     taVariable = rand()%10+1;
+    if (reel) {
+        float decim = rand()%9+1;
+        float decim2 = rand()%9+1;
+        taVariable += decim/10 + decim2/100;
+    }
 
     //BOUTON VALIDATION
 
@@ -54,7 +56,7 @@ ExerciceSerie::ExerciceSerie(QMainWindow *p)
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->move(140+60, 450+110);
 
-    m_menu = new QPushButton("Menu", this);
+    m_menu = new QPushButton("Retour", this);
     m_menu->setToolTip("Retour au Menu");
     m_menu->setFont(QFont("encilPete FONT", 14));
     m_menu->setCursor(Qt::PointingHandCursor);
@@ -135,23 +137,22 @@ void ExerciceSerie::consigne() {
 bool ExerciceSerie::verif() {
     currenterr = 0;
     for(int i=0; i<30;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       background-color: #FF6347;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
             currenterr++;
             erreur++;
-            progress->setValue(erreur*20);
         }
-        if(reponse[i]->text().toFloat() == (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable < 0.0001 && reponse[i]->text().toFloat() - (i+1)*taVariable > -0.0001) {
             reponse[i]->setStyleSheet("border-style: outset;\
                                       border-width: 2px;\
                                       border-radius: 10px;");
         }
     }
     for(int i=0; i<30;i++) {
-        if(reponse[i]->text().toFloat() != (i+1)*taVariable) {
+        if(reponse[i]->text().toFloat() - (i+1)*taVariable >= 0.0001 || reponse[i]->text().toFloat() - (i+1)*taVariable <= -0.0001) {
             return false;
         }
     }
@@ -167,8 +168,8 @@ void ExerciceSerie::message(){
             QMessageBox::information(this, "Félicitation", "Vous avez résolue le problème avec succès en " + QString::number(MINUTES)+ ":" + QString::number(SECONDES)+ " ! \n Vous avez fait "+ QString::number(erreur)+ " erreurs!");
         }
     }else {
-	if (progress->value() >= 100) QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreur, tu devrais lire la consigne et recommencer l'exercice.");
-        QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs!");
+        if (currenterr >= 5) { QMessageBox::critical(this, "Attention", "Tu as fais beaucoup d'erreurs ("+QString::number(currenterr)+"), tu devrais lire la consigne et recommencer l'exercice !");}
+        else {QMessageBox::critical(this, "Attention", "Il reste "+ QString::number(currenterr)+ " erreurs !");}
     }
 }
 
